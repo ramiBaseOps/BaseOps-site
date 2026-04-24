@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Premier Plumbing & Drain | Same-Day Service | NJ & NYC</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1A2E5A;
+    --navy-light: #243c73;
+    --amber: #E8920A;
+    --amber-dark: #c97d08;
+    --white: #FFFFFF;
+    --offwhite: #F4F7FB;
+    --light-gray: #EEF2F8;
+    --gray: #64748B;
+    --dark: #1E293B;
+    --green: #16A34A;
+    --red: #DC2626;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.10);
+    --shadow-lg: 0 12px 40px rgba(0,0,0,0.14);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Open Sans', sans-serif; color: var(--dark); background: #fff; }
+  h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
+
+  /* ─── EMERGENCY TICKER ─── */
+  .emergency-ticker {
+    background: var(--red);
+    color: #fff;
+    text-align: center;
+    padding: 8px 20px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+  }
+  .emergency-ticker a { color: #fff; text-decoration: underline; }
+
+  /* ─── STICKY HEADER ─── */
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: var(--navy);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.25);
+  }
+  .header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+  .logo-icon {
+    width: 42px;
+    height: 42px;
+    background: var(--amber);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+  }
+  .logo-text { color: #fff; }
+  .logo-text .company { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 18px; letter-spacing: -0.02em; }
+  .logo-text .tagline { font-size: 10px; color: rgba(255,255,255,0.65); letter-spacing: 0.08em; text-transform: uppercase; }
+  .header-nav { display: flex; align-items: center; gap: 28px; }
+  .header-nav a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 14px; font-weight: 600; transition: color 0.2s; }
+  .header-nav a:hover { color: var(--amber); }
+  .header-cta { display: flex; align-items: center; gap: 16px; }
+  .phone-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 17px;
+    font-family: 'Montserrat', sans-serif;
+    text-decoration: none;
+  }
+  .phone-header .phone-icon { font-size: 15px; color: var(--amber); }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; border-radius: 6px; font-weight: 700; font-size: 14px; text-decoration: none; cursor: pointer; border: none; transition: all 0.2s; font-family: 'Montserrat', sans-serif; letter-spacing: 0.01em; }
+  .btn-amber { background: var(--amber); color: #fff; }
+  .btn-amber:hover { background: var(--amber-dark); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(232,146,10,0.4); }
+  .btn-outline { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.4); }
+  .btn-outline:hover { border-color: var(--amber); color: var(--amber); }
+  .btn-navy { background: var(--navy); color: #fff; }
+  .btn-navy:hover { background: var(--navy-light); transform: translateY(-1px); }
+  .btn-lg { padding: 15px 32px; font-size: 16px; border-radius: 8px; }
+  .btn-xl { padding: 18px 40px; font-size: 17px; border-radius: 8px; }
+
+  /* ─── HERO ─── */
+  .hero {
+    background: linear-gradient(135deg, var(--navy) 0%, #0f1e3e 100%);
+    min-height: 640px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -120px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(232,146,10,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -100px; left: 30%;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 24px;
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 64px;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(232,146,10,0.15);
+    border: 1px solid rgba(232,146,10,0.35);
+    border-radius: 100px;
+    padding: 6px 16px;
+    color: var(--amber);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .hero-badge::before { content: '●'; font-size: 8px; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+  .hero h1 {
+    font-size: clamp(36px, 4.5vw, 58px);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    margin-bottom: 20px;
+  }
+  .hero h1 em { color: var(--amber); font-style: normal; }
+  .hero-sub {
+    font-size: 18px;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.6;
+    margin-bottom: 36px;
+    max-width: 520px;
+  }
+  .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 40px; }
+  .hero-trust {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255,255,255,0.75);
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .trust-item .icon { color: var(--amber); font-size: 15px; }
+  .hero-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: var(--shadow-lg);
+  }
+  .hero-card h3 {
+    font-size: 20px;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+  .hero-card p { font-size: 13px; color: var(--gray); margin-bottom: 24px; }
+  .form-group { margin-bottom: 14px; }
+  .form-group label { display: block; font-size: 12px; font-weight: 700; color: var(--gray); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
+  .form-group select, .form-group input {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1.5px solid #E2E8F0;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: 'Open Sans', sans-serif;
+    color: var(--dark);
+    background: #FAFBFC;
+    transition: border-color 0.2s;
+    appearance: none;
+  }
+  .form-group select:focus, .form-group input:focus { outline: none; border-color: var(--amber); background: #fff; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .hero-card .btn { width: 100%; justify-content: center; margin-top: 6px; }
+  .form-note { font-size: 11px; color: var(--gray); text-align: center; margin-top: 10px; }
+
+  /* ─── TRUST STRIP ─── */
+  .trust-strip {
+    background: var(--navy);
+    border-top: 3px solid var(--amber);
+  }
+  .trust-strip-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .trust-badge {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #fff;
+  }
+  .trust-badge-icon {
+    width: 36px;
+    height: 36px;
+    background: rgba(232,146,10,0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .trust-badge-text .num { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 18px; color: var(--amber); }
+  .trust-badge-text .label { font-size: 11px; color: rgba(255,255,255,0.65); text-transform: uppercase; letter-spacing: 0.05em; }
+  .trust-divider { width: 1px; height: 40px; background: rgba(255,255,255,0.15); }
+
+  /* ─── SECTION COMMONS ─── */
+  .section { padding: 88px 24px; }
+  .section-alt { background: var(--offwhite); }
+  .section-navy { background: var(--navy); }
+  .container { max-width: 1200px; margin: 0 auto; }
+  .section-label { font-size: 12px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--amber); margin-bottom: 12px; }
+  .section-title { font-size: clamp(28px, 3vw, 42px); font-weight: 800; color: var(--navy); line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 16px; }
+  .section-title-white { color: #fff; }
+  .section-sub { font-size: 17px; color: var(--gray); line-height: 1.65; max-width: 600px; }
+  .section-sub-white { color: rgba(255,255,255,0.7); }
+  .section-header { margin-bottom: 52px; }
+  .section-header-center { text-align: center; }
+  .section-header-center .section-sub { margin: 0 auto; }
+
+  /* ─── SERVICES GRID ─── */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .service-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 32px 28px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid #E8EDF4;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+    background: var(--amber);
+    transform: scaleY(0);
+    transition: transform 0.25s;
+  }
+  .service-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: #CBD5E0; }
+  .service-card:hover::before { transform: scaleY(1); }
+  .service-icon {
+    width: 54px;
+    height: 54px;
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    margin-bottom: 18px;
+  }
+  .service-card h3 { font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+  .service-card p { font-size: 14px; color: var(--gray); line-height: 1.6; margin-bottom: 14px; }
+  .service-price { font-size: 13px; color: var(--amber); font-weight: 700; }
+  .service-emergency { display: inline-flex; align-items: center; gap: 5px; background: #FEF3C7; color: #92400E; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 100px; margin-bottom: 10px; }
+
+  /* ─── WHY CHOOSE US ─── */
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  .why-card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 12px;
+    padding: 28px;
+    display: flex;
+    gap: 18px;
+  }
+  .why-icon {
+    width: 52px;
+    height: 52px;
+    background: var(--amber);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+  }
+  .why-card h3 { font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+  .why-card p { font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.6; }
+
+  /* ─── PROCESS ─── */
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    position: relative;
+  }
+  .process-steps::before {
+    content: '';
+    position: absolute;
+    top: 36px;
+    left: calc(12.5%);
+    width: 75%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--amber) 0%, var(--amber) 100%);
+    opacity: 0.3;
+  }
+  .process-step { text-align: center; padding: 0 16px; }
+  .step-num {
+    width: 72px;
+    height: 72px;
+    background: var(--amber);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 26px;
+    color: #fff;
+    margin: 0 auto 20px;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 0 0 8px rgba(232,146,10,0.15);
+  }
+  .process-step h3 { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+  .process-step p { font-size: 13px; color: var(--gray); line-height: 1.6; }
+
+  /* ─── REVIEWS ─── */
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .review-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 28px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid #E8EDF4;
+  }
+  .review-stars { color: #F59E0B; font-size: 18px; margin-bottom: 12px; }
+  .review-text { font-size: 15px; color: var(--dark); line-height: 1.7; font-style: italic; margin-bottom: 18px; }
+  .reviewer { display: flex; align-items: center; gap: 12px; }
+  .reviewer-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    flex-shrink: 0;
+  }
+  .reviewer-info .name { font-weight: 700; font-size: 14px; color: var(--navy); }
+  .reviewer-info .meta { font-size: 12px; color: var(--gray); }
+  .rating-summary {
+    text-align: center;
+    padding: 48px;
+    background: var(--navy);
+    border-radius: 16px;
+    margin-bottom: 40px;
+    color: #fff;
+  }
+  .rating-big { font-size: 80px; font-weight: 900; font-family: 'Montserrat', sans-serif; color: var(--amber); line-height: 1; }
+  .rating-stars { font-size: 28px; color: #F59E0B; margin: 8px 0; }
+  .rating-count { font-size: 15px; color: rgba(255,255,255,0.65); }
+
+  /* ─── PRICING ─── */
+  .pricing-table {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    border: 1px solid #E8EDF4;
+  }
+  .pricing-header {
+    background: var(--navy);
+    padding: 20px 32px;
+    display: grid;
+    grid-template-columns: 2fr 1.2fr 1.2fr;
+    gap: 16px;
+  }
+  .pricing-header span { color: rgba(255,255,255,0.65); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; }
+  .pricing-row {
+    display: grid;
+    grid-template-columns: 2fr 1.2fr 1.2fr;
+    gap: 16px;
+    padding: 18px 32px;
+    border-bottom: 1px solid #EEF2F8;
+    align-items: center;
+    transition: background 0.15s;
+  }
+  .pricing-row:hover { background: var(--offwhite); }
+  .pricing-row:last-child { border-bottom: none; }
+  .pricing-service { font-weight: 600; font-size: 15px; color: var(--navy); }
+  .pricing-service small { display: block; font-size: 12px; color: var(--gray); font-weight: 400; }
+  .pricing-range { font-weight: 700; font-size: 15px; color: var(--dark); }
+  .pricing-time { font-size: 13px; color: var(--gray); }
+  .pricing-note {
+    background: #FEF9EE;
+    border: 1px solid #FCD34D;
+    border-radius: 8px;
+    padding: 14px 20px;
+    margin-top: 20px;
+    font-size: 13px;
+    color: #92400E;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  /* ─── SERVICE AREAS ─── */
+  .areas-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  .area-pill {
+    background: #fff;
+    border: 1.5px solid #E2E8F0;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--navy);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+  }
+  .area-pill:hover { border-color: var(--amber); color: var(--amber); }
+  .area-pill .dot { color: var(--amber); font-size: 10px; }
+
+  /* ─── BOOKING SECTION ─── */
+  .booking-section {
+    background: linear-gradient(135deg, var(--navy) 0%, #0d1d3d 100%);
+    padding: 88px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .booking-section::before {
+    content: '';
+    position: absolute;
+    right: -100px; bottom: -100px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(232,146,10,0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .booking-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+  .booking-form {
+    background: #fff;
+    border-radius: 16px;
+    padding: 40px;
+    margin-top: 40px;
+    box-shadow: var(--shadow-lg);
+  }
+  .booking-form .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .booking-form .full-width { grid-column: 1 / -1; }
+  .booking-form .btn { width: 100%; justify-content: center; margin-top: 8px; }
+  .booking-eta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 100px;
+    padding: 8px 18px;
+    color: rgba(255,255,255,0.85);
+    font-size: 13px;
+    font-weight: 600;
+    margin-top: 16px;
+  }
+  .booking-eta span { color: var(--amber); }
+
+  /* ─── TEAM ─── */
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  .team-card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid #E8EDF4;
+    text-align: center;
+  }
+  .team-photo {
+    height: 200px;
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 64px;
+  }
+  .team-info { padding: 24px; }
+  .team-name { font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+  .team-title { font-size: 13px; color: var(--amber); font-weight: 600; margin-bottom: 10px; }
+  .team-bio { font-size: 13px; color: var(--gray); line-height: 1.6; margin-bottom: 14px; }
+  .team-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: #EEF2F8;
+    border-radius: 100px;
+    padding: 4px 12px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--navy);
+    margin: 3px;
+  }
+
+  /* ─── GUARANTEE BANNER ─── */
+  .guarantee-banner {
+    background: var(--amber);
+    padding: 40px 24px;
+    text-align: center;
+  }
+  .guarantee-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    justify-content: center;
+  }
+  .guarantee-icon { font-size: 52px; }
+  .guarantee-text h3 { font-size: 24px; font-weight: 800; color: #fff; margin-bottom: 6px; }
+  .guarantee-text p { font-size: 16px; color: rgba(255,255,255,0.9); line-height: 1.5; }
+
+  /* ─── FOOTER ─── */
+  .footer { background: #0D1728; padding: 64px 24px 32px; }
+  .footer-inner { max-width: 1200px; margin: 0 auto; }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+    gap: 48px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 32px;
+  }
+  .footer-brand .tagline-footer { color: rgba(255,255,255,0.55); font-size: 14px; line-height: 1.65; margin-top: 12px; margin-bottom: 20px; max-width: 280px; }
+  .footer-phone { color: var(--amber); font-size: 22px; font-weight: 800; font-family: 'Montserrat', sans-serif; text-decoration: none; display: block; margin-bottom: 8px; }
+  .footer-email { color: rgba(255,255,255,0.55); font-size: 14px; text-decoration: none; }
+  .footer-col h4 { color: #fff; font-size: 14px; font-weight: 700; letter-spacing: 0.04em; margin-bottom: 16px; }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 10px; }
+  .footer-col ul li a { color: rgba(255,255,255,0.55); font-size: 14px; text-decoration: none; transition: color 0.2s; }
+  .footer-col ul li a:hover { color: var(--amber); }
+  .footer-hours { color: rgba(255,255,255,0.55); font-size: 14px; line-height: 1.8; }
+  .footer-hours strong { color: #fff; }
+  .footer-emergency { background: rgba(232,146,10,0.1); border: 1px solid rgba(232,146,10,0.3); border-radius: 8px; padding: 12px 16px; margin-top: 16px; }
+  .footer-emergency p { color: var(--amber); font-size: 13px; font-weight: 700; }
+  .footer-bottom { display: flex; justify-content: space-between; align-items: center; }
+  .footer-bottom p { color: rgba(255,255,255,0.35); font-size: 12px; }
+  .footer-badges { display: flex; gap: 12px; }
+  .footer-badge { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; padding: 6px 14px; color: rgba(255,255,255,0.5); font-size: 11px; font-weight: 700; letter-spacing: 0.04em; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-card { display: none; }
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .why-grid { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: repeat(2, 1fr); }
+    .process-steps::before { display: none; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .areas-grid { grid-template-columns: repeat(2, 1fr); }
+    .booking-form .form-grid { grid-template-columns: 1fr; }
+    .team-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .header-nav { display: none; }
+  }
+  @media (max-width: 600px) {
+    .services-grid { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: 1fr; }
+    .areas-grid { grid-template-columns: repeat(2, 1fr); }
+    .team-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .trust-strip-inner { justify-content: center; }
+    .trust-divider { display: none; }
+    .hero-ctas { flex-direction: column; }
+    .hero-ctas .btn { text-align: center; justify-content: center; }
+    .guarantee-inner { flex-direction: column; }
+    .section { padding: 56px 16px; }
+    .hero-inner { padding: 56px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- EMERGENCY TICKER -->
+<div class="emergency-ticker">
+  🚨 24/7 Emergency Service Available — <a href="tel:2015550100">Call (201) 555-0100</a> for immediate dispatch
+</div>
+
+<!-- STICKY HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <a href="#" class="logo">
+      <div class="logo-icon">🔧</div>
+      <div class="logo-text">
+        <div class="company">Premier Plumbing & Drain</div>
+        <div class="tagline">NJ & NYC · Licensed · Insured</div>
+      </div>
+    </a>
+    <nav class="header-nav">
+      <a href="#services">Services</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#team">About</a>
+      <a href="#areas">Service Areas</a>
+    </nav>
+    <div class="header-cta">
+      <a href="tel:2015550100" class="phone-header">
+        <span class="phone-icon">📞</span>
+        (201) 555-0100
+      </a>
+      <a href="#booking" class="btn btn-amber">Book Now</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge">🟢 Available now — 30-min emergency response</div>
+      <h1>Same-Day Plumbing.<br><em>No Surprises.</em><br>Guaranteed.</h1>
+      <p class="hero-sub">NJ & NYC's trusted plumbing experts. Flat-rate pricing upfront. Licensed master plumbers. If we're late, you get $50 off — guaranteed.</p>
+      <div class="hero-ctas">
+        <a href="tel:2015550100" class="btn btn-amber btn-xl">📞 Call for Emergency Service</a>
+        <a href="#booking" class="btn btn-outline btn-xl">📅 Book Online — 90 Seconds</a>
+      </div>
+      <div class="hero-trust">
+        <div class="trust-item"><span class="icon">✓</span> Licensed & Insured</div>
+        <div class="trust-item"><span class="icon">✓</span> Flat-Rate Pricing</div>
+        <div class="trust-item"><span class="icon">✓</span> 4.9★ Google Rating</div>
+        <div class="trust-item"><span class="icon">✓</span> Same-Day Available</div>
+      </div>
+    </div>
+    <div class="hero-card">
+      <h3>Get a Free Estimate</h3>
+      <p>Tell us what you need — we'll respond in under 30 minutes.</p>
+      <div class="form-group">
+        <label>Service Needed</label>
+        <select>
+          <option>🚨 Emergency — Water leak / burst pipe</option>
+          <option>🚿 Drain clog — Kitchen or bathroom</option>
+          <option>🌡️ Water heater — Repair or replacement</option>
+          <option>🪠 Sewer line — Repair or inspection</option>
+          <option>🚰 Fixture — Installation or repair</option>
+          <option>🔍 Inspection — Pre-sale or routine</option>
+          <option>Other / Not sure</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Your Address</label>
+        <input type="text" placeholder="123 Main St, Jersey City NJ">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" placeholder="First name">
+        </div>
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" placeholder="(201) 555-…">
+        </div>
+      </div>
+      <a href="#booking" class="btn btn-amber btn-lg">Get My Free Estimate →</a>
+      <p class="form-note">🔒 No spam. We call within 30 minutes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST STRIP -->
+<div class="trust-strip">
+  <div class="trust-strip-inner">
+    <div class="trust-badge">
+      <div class="trust-badge-icon">⭐</div>
+      <div class="trust-badge-text">
+        <div class="num">4.9 / 5.0</div>
+        <div class="label">Google Rating</div>
+      </div>
+    </div>
+    <div class="trust-divider"></div>
+    <div class="trust-badge">
+      <div class="trust-badge-icon">💬</div>
+      <div class="trust-badge-text">
+        <div class="num">530+</div>
+        <div class="label">Verified Reviews</div>
+      </div>
+    </div>
+    <div class="trust-divider"></div>
+    <div class="trust-badge">
+      <div class="trust-badge-icon">🏅</div>
+      <div class="trust-badge-text">
+        <div class="num">15+ Years</div>
+        <div class="label">Serving NJ & NYC</div>
+      </div>
+    </div>
+    <div class="trust-divider"></div>
+    <div class="trust-badge">
+      <div class="trust-badge-icon">📋</div>
+      <div class="trust-badge-text">
+        <div class="num">NJ Lic #12345</div>
+        <div class="label">Licensed & Insured</div>
+      </div>
+    </div>
+    <div class="trust-divider"></div>
+    <div class="trust-badge">
+      <div class="trust-badge-icon">🕐</div>
+      <div class="trust-badge-text">
+        <div class="num">24 / 7</div>
+        <div class="label">Emergency Service</div>
+      </div>
+    </div>
+    <div class="trust-divider"></div>
+    <div class="trust-badge">
+      <div class="trust-badge-icon">💰</div>
+      <div class="trust-badge-text">
+        <div class="num">$0 Hidden Fees</div>
+        <div class="label">Flat-Rate Pricing</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="section section-alt" id="services">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Our Services</div>
+      <h2 class="section-title">Expert plumbing for every situation</h2>
+      <p class="section-sub">From emergency burst pipes to planned water heater replacements — flat-rate pricing on every job. No surprises, ever.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🚨</div>
+        <div class="service-emergency">⚡ 30-min response</div>
+        <h3>Emergency Plumbing</h3>
+        <p>Burst pipes, major leaks, sewage backups — we dispatch within 30 minutes, 24/7, including weekends and holidays.</p>
+        <div class="service-price">From $149 service call · Parts & labor quoted on-site</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🪠</div>
+        <h3>Drain Cleaning</h3>
+        <p>Kitchen, bathroom, floor drains — hydro-jetting and snake clearing for every clog. Camera inspection included on stubborn blockages.</p>
+        <div class="service-price">$149 – $399 · Same-day available</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🌡️</div>
+        <h3>Water Heater Services</h3>
+        <p>Repair, replacement, and tank-to-tankless conversions. All major brands. Typical installations completed same day.</p>
+        <div class="service-price">Repair $199–$399 · Replacement from $1,200</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🏗️</div>
+        <h3>Sewer Line Repair</h3>
+        <p>Video sewer inspection, trenchless repairs, and full replacements. We diagnose before we quote — no guesswork.</p>
+        <div class="service-price">Inspection $199 · Repairs quoted after diagnosis</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🚰</div>
+        <h3>Fixture Installation</h3>
+        <p>Toilets, faucets, sinks, showers, and garbage disposals. Supply your own fixture or we source it — your choice.</p>
+        <div class="service-price">$149–$299 per fixture · Includes installation</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔍</div>
+        <h3>Plumbing Inspections</h3>
+        <p>Pre-purchase home inspections, annual maintenance checks, and code compliance reviews. Full written report included.</p>
+        <div class="service-price">$249 full inspection · Same-day availability</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section class="section section-navy">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;">
+      <div>
+        <div class="section-label">Why Premier Plumbing</div>
+        <h2 class="section-title section-title-white">We do things differently — and we can prove it</h2>
+        <p class="section-sub section-sub-white">Most plumbers give you vague quotes, arrive late, and leave you guessing the final bill. We built our business on the opposite of all that.</p>
+        <div style="margin-top:32px;">
+          <a href="tel:2015550100" class="btn btn-amber btn-lg">📞 Call (201) 555-0100</a>
+        </div>
+      </div>
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-icon">💲</div>
+          <div>
+            <h3>Flat-Rate Pricing</h3>
+            <p>You see the full price before we touch anything. No hourly surprises, no "parts cost more than expected."</p>
+          </div>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">⏱️</div>
+          <div>
+            <h3>On-Time Guarantee</h3>
+            <p>We arrive in the window we promise. If we're late, you get $50 off your bill — automatically.</p>
+          </div>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">🎓</div>
+          <div>
+            <h3>Master-Licensed Plumbers</h3>
+            <p>Every tech has 10+ years experience. We hire masters, not apprentices — your home deserves it.</p>
+          </div>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">✅</div>
+          <div>
+            <h3>Satisfaction Guarantee</h3>
+            <p>If you're not 100% satisfied with our work, we return and fix it free. No arguments, no hassle.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section">
+  <div class="container">
+    <div class="section-header section-header-center">
+      <div class="section-label">How It Works</div>
+      <h2 class="section-title">Service in 4 simple steps</h2>
+      <p class="section-sub">From your first call to a completed job — we make it fast, transparent, and stress-free.</p>
+    </div>
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="step-num">1</div>
+        <h3>Call or Book Online</h3>
+        <p>Call us or use our 90-second online form. Tell us what's happening and where. We confirm your slot instantly.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">2</div>
+        <h3>We Arrive On Time</h3>
+        <p>Your technician arrives in the promised window — uniformed, background-checked, and ready to work.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">3</div>
+        <h3>Flat-Rate Quote Upfront</h3>
+        <p>We diagnose the issue and give you the exact price before starting. You approve it. We work.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">4</div>
+        <h3>Done Right. Guaranteed.</h3>
+        <p>Work completed, site cleaned up. Pay by card, cash, or financing. 1-year workmanship warranty on every job.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="section section-alt" id="reviews">
+  <div class="container">
+    <div class="section-header section-header-center">
+      <div class="section-label">Customer Reviews</div>
+      <h2 class="section-title">530+ homeowners. All 5 stars.</h2>
+      <p class="section-sub">Real reviews from real customers in NJ and NYC. We don't cherry-pick — these are our last 30 reviews.</p>
+    </div>
+    <div class="rating-summary">
+      <div class="rating-big">4.9</div>
+      <div class="rating-stars">★★★★★</div>
+      <div class="rating-count">Based on 530 verified Google reviews · Updated April 2026</div>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Burst pipe at 11pm on a Sunday. Called Premier and they had a tech at my door in 22 minutes. Fixed in under 2 hours and my basement was saved. Worth every penny — these guys are the real deal."</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar" style="background:var(--navy);">MR</div>
+          <div class="reviewer-info">
+            <div class="name">Michael R.</div>
+            <div class="meta">Hoboken, NJ · Emergency pipe repair</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Finally a plumber that gives you the price upfront. No guessing, no surprises. They replaced my water heater the same day I called. Professional crew, immaculate job. I won't use anyone else."</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar" style="background:#7C3AED;">SP</div>
+          <div class="reviewer-info">
+            <div class="name">Sandra P.</div>
+            <div class="meta">Jersey City, NJ · Water heater replacement</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Had a stubborn kitchen drain clog that two other plumbers couldn't fix. Premier came in with the hydro-jet and knocked it out in 45 minutes. Honest, fast, reasonably priced. Highly recommend."</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar" style="background:#059669;">TL</div>
+          <div class="reviewer-info">
+            <div class="name">Thomas L.</div>
+            <div class="meta">Brooklyn, NY · Drain cleaning</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:32px;">
+      <a href="#" class="btn btn-navy btn-lg">Read All 530 Reviews on Google →</a>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING TRANSPARENCY -->
+<section class="section" id="pricing">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;">
+      <div>
+        <div class="section-label">Transparent Pricing</div>
+        <h2 class="section-title">You see the price before we start. Always.</h2>
+        <p class="section-sub">We're one of the only plumbers in NJ/NYC that publishes price ranges upfront. Because honest pricing shouldn't be a differentiator — but it is.</p>
+        <div style="margin-top:28px;padding:24px;background:var(--offwhite);border-radius:12px;border-left:4px solid var(--amber);">
+          <h4 style="color:var(--navy);margin-bottom:8px;font-size:16px;">Our Flat-Rate Promise</h4>
+          <p style="font-size:14px;color:var(--gray);line-height:1.65;">The price we quote before starting is the price you pay. Period. No "it took longer than expected" add-ons. No parts markup surprises. Your price is locked the moment you approve it.</p>
+        </div>
+        <div style="margin-top:20px;padding:16px;background:#F0FDF4;border-radius:8px;display:flex;gap:12px;align-items:center;">
+          <span style="font-size:24px;">🏅</span>
+          <div>
+            <div style="font-weight:700;color:#166534;font-size:14px;">1-Year Workmanship Warranty</div>
+            <div style="font-size:13px;color:#15803D;">Every repair and installation is backed by a full year guarantee.</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="pricing-table">
+          <div class="pricing-header">
+            <span>Service</span>
+            <span>Price Range</span>
+            <span>Typical Time</span>
+          </div>
+          <div class="pricing-row">
+            <div class="pricing-service">Emergency Call-Out <small>After-hours surcharge included</small></div>
+            <div class="pricing-range">$149–$199</div>
+            <div class="pricing-time">30 min dispatch</div>
+          </div>
+          <div class="pricing-row">
+            <div class="pricing-service">Drain Cleaning <small>Kitchen, bath, floor drain</small></div>
+            <div class="pricing-range">$149–$399</div>
+            <div class="pricing-time">1–2 hrs</div>
+          </div>
+          <div class="pricing-row">
+            <div class="pricing-service">Toilet Repair / Replacement <small>Parts included</small></div>
+            <div class="pricing-range">$199–$449</div>
+            <div class="pricing-time">1–2 hrs</div>
+          </div>
+          <div class="pricing-row">
+            <div class="pricing-service">Water Heater Replacement <small>40-gal standard tank</small></div>
+            <div class="pricing-range">$1,200–$1,800</div>
+            <div class="pricing-time">3–5 hrs</div>
+          </div>
+          <div class="pricing-row">
+            <div class="pricing-service">Leak Detection & Repair <small>Includes slab / behind wall</small></div>
+            <div class="pricing-range">$249–$899</div>
+            <div class="pricing-time">2–6 hrs</div>
+          </div>
+          <div class="pricing-row">
+            <div class="pricing-service">Full Plumbing Inspection <small>Written report included</small></div>
+            <div class="pricing-range">$249</div>
+            <div class="pricing-time">90 min</div>
+          </div>
+        </div>
+        <div class="pricing-note">
+          ⚠️ Prices are estimates. Your tech will give you an exact flat-rate quote before any work begins. You'll never pay more than the quoted amount.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="section section-alt" id="team">
+  <div class="container">
+    <div class="section-header section-header-center">
+      <div class="section-label">Meet the Team</div>
+      <h2 class="section-title">Real people. Real experience.</h2>
+      <p class="section-sub">Every technician is background-checked, licensed, and has at minimum 10 years of hands-on experience. This is who shows up at your door.</p>
+    </div>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-photo">👨‍🔧</div>
+        <div class="team-info">
+          <div class="team-name">Marco D.</div>
+          <div class="team-title">Master Plumber · Owner</div>
+          <p class="team-bio">18 years in the trade. Started as an apprentice in Newark, licensed master plumber since 2012. Specializes in emergency response and complex sewer line work.</p>
+          <div>
+            <span class="team-badge">✓ NJ Master License</span>
+            <span class="team-badge">✓ Background Checked</span>
+            <span class="team-badge">✓ EPA Certified</span>
+          </div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-photo">👩‍🔧</div>
+        <div class="team-info">
+          <div class="team-name">Jessica R.</div>
+          <div class="team-title">Senior Plumber · Water Heater Specialist</div>
+          <p class="team-bio">12 years experience. Certified Rinnai and Rheem installer. Known for her meticulous work on tank-to-tankless conversions and radiant heating systems.</p>
+          <div>
+            <span class="team-badge">✓ Rinnai Certified</span>
+            <span class="team-badge">✓ Rheem Certified</span>
+            <span class="team-badge">✓ NY Licensed</span>
+          </div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-photo">👨‍💼</div>
+        <div class="team-info">
+          <div class="team-name">Carlos M.</div>
+          <div class="team-title">Plumber · Drain & Sewer Specialist</div>
+          <p class="team-bio">11 years experience. Expert in hydro-jetting, video sewer inspection, and trenchless pipe lining. Handles the problems other plumbers walk away from.</p>
+          <div>
+            <span class="team-badge">✓ Hydro-Jetting Cert</span>
+            <span class="team-badge">✓ Video Inspection</span>
+            <span class="team-badge">✓ NJ Licensed</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE AREAS -->
+<section class="section" id="areas">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Service Areas</div>
+      <h2 class="section-title">Serving NJ & NYC — same-day availability</h2>
+      <p class="section-sub">We cover a 40-mile radius across New Jersey and the New York City metro area. Not sure if we serve your area? Call and we'll tell you in 10 seconds.</p>
+    </div>
+    <div class="areas-grid">
+      <div class="area-pill"><span class="dot">●</span> Jersey City, NJ</div>
+      <div class="area-pill"><span class="dot">●</span> Hoboken, NJ</div>
+      <div class="area-pill"><span class="dot">●</span> Newark, NJ</div>
+      <div class="area-pill"><span class="dot">●</span> Bayonne, NJ</div>
+      <div class="area-pill"><span class="dot">●</span> Weehawken, NJ</div>
+      <div class="area-pill"><span class="dot">●</span> Union City, NJ</div>
+      <div class="area-pill"><span class="dot">●</span> Secaucus, NJ</div>
+      <div class="area-pill"><span class="dot">●</span> Kearny, NJ</div>
+      <div class="area-pill"><span class="dot">●</span> Harrison, NJ</div>
+      <div class="area-pill"><span class="dot">●</span> East Orange, NJ</div>
+      <div class="area-pill"><span class="dot">●</span> Manhattan, NY</div>
+      <div class="area-pill"><span class="dot">●</span> Brooklyn, NY</div>
+    </div>
+    <p style="margin-top:20px;font-size:14px;color:var(--gray);">+ Full coverage across Hudson County, Essex County, Union County, and Bergen County. <a href="#" style="color:var(--amber);font-weight:700;">View full service map →</a></p>
+  </div>
+</section>
+
+<!-- GUARANTEE BANNER -->
+<div class="guarantee-banner">
+  <div class="guarantee-inner">
+    <div class="guarantee-icon">🏆</div>
+    <div class="guarantee-text">
+      <h3>The Premier Plumbing Promise</h3>
+      <p>100% satisfaction guaranteed. On-time or $50 off. Flat-rate pricing — locked before we start. 1-year workmanship warranty on every job.</p>
+    </div>
+    <a href="tel:2015550100" class="btn btn-navy btn-lg">Call Now →</a>
+  </div>
+</div>
+
+<!-- ONLINE BOOKING -->
+<section class="booking-section" id="booking">
+  <div class="booking-inner">
+    <div class="section-label" style="color:var(--amber);">Book a Service</div>
+    <h2 class="section-title section-title-white">Schedule in 90 seconds — online or by phone</h2>
+    <p class="section-sub section-sub-white" style="margin:0 auto;">Fill out the form below and we'll call you within 30 minutes to confirm. Prefer to talk? Call us directly at <a href="tel:2015550100" style="color:var(--amber);font-weight:700;">(201) 555-0100</a>.</p>
+    <div class="booking-eta">📞 Current wait time: <span>Under 12 minutes</span> · Lines open 24/7</div>
+    <div class="booking-form">
+      <div class="form-grid">
+        <div class="form-group full-width">
+          <label>What do you need help with?</label>
+          <select>
+            <option value="">Select a service...</option>
+            <option>🚨 Emergency — Burst pipe / major leak</option>
+            <option>🪠 Drain clog — Kitchen, bathroom, or floor</option>
+            <option>🌡️ Water heater — Repair or replacement</option>
+            <option>🏗️ Sewer line — Repair or inspection</option>
+            <option>🚰 Fixture — Install or repair</option>
+            <option>🔍 Inspection — Pre-purchase or annual</option>
+            <option>Other — I'll describe when you call</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Preferred Date</label>
+          <input type="date">
+        </div>
+        <div class="form-group">
+          <label>Preferred Time</label>
+          <select>
+            <option>Morning (8am – 12pm)</option>
+            <option>Afternoon (12pm – 5pm)</option>
+            <option>Evening (5pm – 8pm)</option>
+            <option>As soon as possible</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Your Full Name</label>
+          <input type="text" placeholder="John Smith">
+        </div>
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" placeholder="(201) 555-0100">
+        </div>
+        <div class="form-group full-width">
+          <label>Service Address</label>
+          <input type="text" placeholder="123 Main St, Jersey City NJ 07302">
+        </div>
+        <div class="form-group full-width">
+          <label>Describe the Issue (Optional)</label>
+          <input type="text" placeholder="e.g. Kitchen sink slow drain, water heater not heating, leak under bathroom sink...">
+        </div>
+        <div class="full-width">
+          <a href="#" class="btn btn-amber btn-xl">📅 Request My Appointment →</a>
+          <p class="form-note" style="margin-top:12px;">✓ We call within 30 minutes &nbsp;·&nbsp; ✓ No credit card required &nbsp;·&nbsp; ✓ Free estimate included</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="logo" style="margin-bottom:12px;display:inline-flex;">
+          <div class="logo-icon" style="width:36px;height:36px;font-size:18px;border-radius:6px;">🔧</div>
+          <div class="logo-text" style="margin-left:10px;">
+            <div class="company" style="font-size:16px;">Premier Plumbing & Drain</div>
+            <div class="tagline">NJ & NYC · Licensed · Insured</div>
+          </div>
+        </a>
+        <p class="tagline-footer">Same-day plumbing service with flat-rate pricing. Licensed master plumbers serving NJ and NYC since 2009. No surprises — ever.</p>
+        <a href="tel:2015550100" class="footer-phone">(201) 555-0100</a>
+        <a href="mailto:service@premierplumbing.com" class="footer-email">service@premierplumbing.com</a>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#">Emergency Plumbing</a></li>
+          <li><a href="#">Drain Cleaning</a></li>
+          <li><a href="#">Water Heaters</a></li>
+          <li><a href="#">Sewer Line Repair</a></li>
+          <li><a href="#">Fixture Installation</a></li>
+          <li><a href="#">Plumbing Inspections</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Meet the Team</a></li>
+          <li><a href="#">Customer Reviews</a></li>
+          <li><a href="#">Service Areas</a></li>
+          <li><a href="#">Financing</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Hours & Availability</h4>
+        <div class="footer-hours">
+          <strong>Monday – Friday:</strong><br>7:00 AM – 8:00 PM<br>
+          <strong>Saturday:</strong><br>8:00 AM – 6:00 PM<br>
+          <strong>Sunday:</strong><br>9:00 AM – 5:00 PM
+        </div>
+        <div class="footer-emergency">
+          <p>🚨 Emergency line open 24/7<br>Call (201) 555-0100 anytime</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Premier Plumbing & Drain LLC · NJ Plumbing License #12345 · All rights reserved</p>
+      <div class="footer-badges">
+        <div class="footer-badge">BBB A+</div>
+        <div class="footer-badge">Google 4.9★</div>
+        <div class="footer-badge">Licensed NJ</div>
+        <div class="footer-badge">Insured</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // Sticky header shadow on scroll
+  const header = document.querySelector('.header');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 80) {
+      header.style.boxShadow = '0 4px 30px rgba(0,0,0,0.3)';
+    } else {
+      header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.25)';
+    }
+  });
+
+  // Animate booking form button
+  const bookBtns = document.querySelectorAll('.btn-amber');
+  bookBtns.forEach(btn => {
+    btn.addEventListener('mouseenter', function() {
+      this.style.transform = 'translateY(-2px)';
+    });
+    btn.addEventListener('mouseleave', function() {
+      this.style.transform = '';
+    });
+  });
+</script>
+</body>
+</html>
