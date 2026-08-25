@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Salsa Fever On2 | New Student Special — September Cycle</title>
+<meta name="description" content="Start dancing this September. Your first month at Salsa Fever On2 — unlimited classes, socials and practice parties for $100. Jersey City's award-winning On2 dance academy.">
+<meta name="robots" content="noindex">
+<meta property="og:title" content="Salsa Fever On2 — New Student Special">
+<meta property="og:description" content="Your first month: unlimited classes for $100. September cycle starts Sept 7.">
+<meta property="og:type" content="website">
+<link rel="icon" href="https://salsafeveron2.com/wp-content/uploads/2018/12/cropped-logo-270x270.gif">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#000000;
+    --ink:#111111;
+    --panel:#141414;
+    --panel-2:#1c1c1c;
+    --gold:#FABD45;
+    --gold-2:#F7CE68;
+    --peach:#FBAB7E;
+    --grad:linear-gradient(234deg, #FBAB7E 0%, #F7CE68 100%);
+    --grad-r:linear-gradient(100deg, #FBAB7E 0%, #F7CE68 100%);
+    --white:#ffffff;
+    --muted:#666666;
+    --muted-l:#9a9a9a;
+    --line:#e6e6e6;
+    --line-d:rgba(255,255,255,.14);
+    --ok:#1FA97A;
+    --err:#D5453D;
+    --head:'Poppins', Helvetica, Arial, sans-serif;
+    --body:'Open Sans', Arial, sans-serif;
+    --shadow:0 18px 50px rgba(0,0,0,.16);
+    --radius:18px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:var(--body);
+    color:var(--ink);
+    background:var(--white);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.6;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;}
+  .wrap{width:100%;max-width:1140px;margin:0 auto;padding:0 22px;}
+
+  /* ---------- TOP BAR ---------- */
+  .topbar{
+    background:var(--black);
+    border-bottom:1px solid var(--line-d);
+    padding:14px 0;
+  }
+  .topbar-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+  .logo{height:44px;width:auto;}
+  .topbar-contact{
+    font-family:var(--head);
+    font-size:.82rem;
+    letter-spacing:.02em;
+    color:rgba(255,255,255,.72);
+    display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+  }
+  .topbar-contact a{color:var(--gold);text-decoration:none;font-weight:600;}
+  .topbar-contact a:hover{text-decoration:underline;}
+  .dot{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.3);}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:var(--black);
+    color:var(--white);
+    position:relative;
+    overflow:hidden;
+    padding:56px 0 64px;
+  }
+  .hero::before{
+    content:'';position:absolute;top:-280px;right:-200px;
+    width:760px;height:760px;border-radius:50%;
+    background:radial-gradient(circle, rgba(250,189,69,.20) 0%, rgba(250,189,69,0) 68%);
+    pointer-events:none;
+  }
+  .hero::after{
+    content:'';position:absolute;bottom:-360px;left:-260px;
+    width:680px;height:680px;border-radius:50%;
+    background:radial-gradient(circle, rgba(251,171,126,.13) 0%, rgba(251,171,126,0) 70%);
+    pointer-events:none;
+  }
+  .hero-grid{
+    position:relative;z-index:2;
+    display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:start;
+  }
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:9px;
+    font-family:var(--head);font-weight:600;font-size:.74rem;
+    letter-spacing:.14em;text-transform:uppercase;
+    color:var(--black);
+    background:var(--grad-r);
+    padding:8px 16px;border-radius:100px;
+    margin-bottom:22px;
+  }
+  .pulse{width:7px;height:7px;border-radius:50%;background:var(--black);opacity:.75;}
+  h1{
+    font-family:var(--head);font-weight:700;
+    font-size:clamp(2.15rem, 5.2vw, 3.5rem);
+    line-height:1.08;letter-spacing:-.015em;
+    margin:0 0 20px;color:var(--white);
+  }
+  h1 .accent{
+    background:var(--grad-r);
+    -webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;color:transparent;
+    font-style:italic;
+  }
+  .lede{
+    font-size:1.06rem;color:rgba(255,255,255,.78);
+    max-width:33rem;margin:0 0 30px;
+  }
+  .lede strong{color:var(--white);font-weight:700;}
+
+  /* offer block */
+  .offer{
+    border:1px solid var(--line-d);
+    border-radius:var(--radius);
+    background:linear-gradient(180deg, rgba(255,255,255,.045) 0%, rgba(255,255,255,.015) 100%);
+    padding:26px 26px 24px;
+    margin-bottom:26px;
+  }
+  .offer-label{
+    font-family:var(--head);font-size:.72rem;font-weight:600;
+    letter-spacing:.13em;text-transform:uppercase;color:var(--gold);
+    margin-bottom:10px;
+  }
+  .offer-price{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:6px;}
+  .price{
+    font-family:var(--head);font-weight:800;
+    font-size:clamp(2.6rem,7vw,3.6rem);line-height:1;
+    color:var(--white);letter-spacing:-.02em;
+  }
+  .price sup{font-size:.42em;font-weight:700;top:-.65em;position:relative;margin-right:2px;}
+  .price-note{font-family:var(--head);font-size:.95rem;font-weight:500;color:rgba(255,255,255,.65);}
+  .offer-sub{font-size:.92rem;color:rgba(255,255,255,.6);margin:0;}
+
+  .includes{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:11px;}
+  .includes li{display:flex;gap:11px;align-items:flex-start;font-size:.94rem;color:rgba(255,255,255,.86);}
+  .tick{
+    flex:0 0 auto;width:19px;height:19px;border-radius:50%;
+    background:var(--grad-r);
+    display:flex;align-items:center;justify-content:center;
+    margin-top:3px;
+  }
+  .tick svg{width:11px;height:11px;}
+
+  /* trust row */
+  .trust{
+    display:flex;gap:26px;flex-wrap:wrap;
+    padding-top:24px;margin-top:4px;
+    border-top:1px solid var(--line-d);
+  }
+  .trust-item{min-width:88px;}
+  .trust-num{
+    font-family:var(--head);font-weight:700;font-size:1.4rem;
+    color:var(--gold);line-height:1.1;
+  }
+  .trust-lbl{font-size:.76rem;color:rgba(255,255,255,.55);letter-spacing:.02em;}
+
+  /* ---------- FORM CARD ---------- */
+  .card{
+    background:var(--white);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:30px 28px 26px;
+    position:relative;
+  }
+  .card-badge{
+    position:absolute;top:-13px;left:28px;
+    background:var(--grad-r);
+    font-family:var(--head);font-weight:700;font-size:.7rem;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--black);
+    padding:6px 14px;border-radius:100px;
+  }
+  .card h2{
+    font-family:var(--head);font-weight:700;font-size:1.42rem;
+    margin:8px 0 4px;color:var(--ink);letter-spacing:-.01em;
+  }
+  .card-sub{font-size:.9rem;color:var(--muted);margin:0 0 22px;}
+
+  .field{margin-bottom:15px;}
+  label{
+    display:block;font-family:var(--head);font-weight:600;
+    font-size:.78rem;letter-spacing:.04em;text-transform:uppercase;
+    color:#3a3a3a;margin-bottom:6px;
+  }
+  .req{color:var(--err);}
+  input[type=text],input[type=tel],input[type=email]{
+    width:100%;padding:13px 15px;
+    border:1.5px solid var(--line);border-radius:11px;
+    font-family:var(--body);font-size:1rem;color:var(--ink);
+    background:#FAFAFA;transition:border-color .16s, background .16s;
+  }
+  input:focus{outline:none;border-color:var(--gold);background:var(--white);}
+  input::placeholder{color:#b3b3b3;}
+  .err-msg{display:none;color:var(--err);font-size:.78rem;margin-top:5px;font-weight:600;}
+  .field.invalid input{border-color:var(--err);background:#FFF7F6;}
+  .field.invalid .err-msg{display:block;}
+
+  /* consent */
+  .consent{
+    display:flex;gap:11px;align-items:flex-start;
+    background:#FBF8F1;border:1px solid #F0E4CC;border-radius:12px;
+    padding:14px 15px;margin:18px 0 6px;
+  }
+  .consent input[type=checkbox]{
+    flex:0 0 auto;width:19px;height:19px;margin:2px 0 0;
+    accent-color:var(--gold);cursor:pointer;
+  }
+  .consent label{
+    text-transform:none;letter-spacing:0;font-weight:400;
+    font-family:var(--body);font-size:.83rem;color:#5a5040;
+    margin:0;line-height:1.5;cursor:pointer;
+  }
+  .optional{
+    font-family:var(--head);font-size:.68rem;font-weight:600;
+    letter-spacing:.08em;text-transform:uppercase;color:#9a8a6a;
+    display:block;margin-bottom:3px;
+  }
+
+  /* buttons */
+  .btn{
+    display:block;width:100%;text-align:center;
+    font-family:var(--head);font-weight:700;font-size:1rem;
+    padding:16px 22px;border-radius:100px;border:2px solid transparent;
+    cursor:pointer;text-decoration:none;transition:transform .14s, box-shadow .14s, background .14s;
+  }
+  .btn-primary{
+    background:var(--grad-r);color:var(--black);
+    box-shadow:0 8px 24px rgba(250,189,69,.42);
+    margin-top:16px;letter-spacing:.01em;
+  }
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(250,189,69,.5);}
+  .btn-primary:active{transform:translateY(0);}
+  .btn-secondary{
+    background:transparent;color:var(--ink);
+    border-color:#d9d9d9;margin-top:10px;font-size:.94rem;font-weight:600;
+  }
+  .btn-secondary:hover{border-color:var(--ink);background:#FAFAFA;}
+
+  .pay-note{
+    display:flex;align-items:center;justify-content:center;gap:7px;
+    font-size:.76rem;color:var(--muted);margin-top:14px;text-align:center;
+  }
+  .pay-note svg{width:13px;height:13px;flex:0 0 auto;}
+
+  .divider{
+    display:flex;align-items:center;gap:12px;
+    margin:20px 0 4px;color:#bbb;font-size:.74rem;
+    font-family:var(--head);letter-spacing:.1em;text-transform:uppercase;
+  }
+  .divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--line);}
+
+  /* success state */
+  .success{display:none;text-align:center;padding:14px 0 6px;}
+  .success.show{display:block;}
+  .success-icon{
+    width:58px;height:58px;border-radius:50%;
+    background:var(--grad-r);margin:0 auto 16px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .success h3{font-family:var(--head);font-size:1.35rem;margin:0 0 8px;color:var(--ink);}
+  .success p{font-size:.92rem;color:var(--muted);margin:0 0 6px;}
+  .success .detail{
+    background:#F7F7F7;border-radius:11px;padding:14px;margin-top:16px;
+    font-size:.82rem;color:#555;text-align:left;
+  }
+  .success .detail b{font-family:var(--head);color:var(--ink);}
+  form.hide{display:none;}
+
+  /* ---------- DETAILS STRIP ---------- */
+  .details{background:#FAFAFA;border-top:1px solid var(--line);padding:46px 0;}
+  .details-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
+  .detail-card{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:22px;}
+  .detail-icon{
+    width:38px;height:38px;border-radius:10px;
+    background:var(--grad-r);margin-bottom:13px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .detail-icon svg{width:19px;height:19px;}
+  .detail-card h3{
+    font-family:var(--head);font-weight:700;font-size:1rem;
+    margin:0 0 6px;color:var(--ink);
+  }
+  .detail-card p{font-size:.88rem;color:var(--muted);margin:0;}
+  .detail-card p strong{color:var(--ink);}
+
+  /* ---------- AWARDS ---------- */
+  .awards{background:var(--black);color:var(--white);padding:44px 0;}
+  .awards h2{
+    font-family:var(--head);font-weight:700;font-size:1.12rem;
+    text-align:center;margin:0 0 6px;letter-spacing:-.005em;
+  }
+  .awards-sub{
+    text-align:center;font-size:.85rem;color:rgba(255,255,255,.5);
+    margin:0 0 28px;
+  }
+  .awards-list{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));
+    gap:14px;
+  }
+  .award{
+    border:1px solid var(--line-d);border-radius:12px;
+    padding:16px 18px;font-size:.86rem;color:rgba(255,255,255,.82);
+    display:flex;gap:11px;align-items:flex-start;
+    background:rgba(255,255,255,.02);
+  }
+  .award .star{color:var(--gold);flex:0 0 auto;font-size:1rem;line-height:1.3;}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--panel);color:rgba(255,255,255,.62);padding:34px 0;font-size:.85rem;}
+  .foot-grid{display:flex;justify-content:space-between;gap:22px;flex-wrap:wrap;align-items:flex-start;}
+  .foot-logo{height:38px;opacity:.9;margin-bottom:10px;}
+  footer a{color:var(--gold);text-decoration:none;}
+  footer a:hover{text-decoration:underline;}
+  .foot-legal{font-size:.74rem;color:rgba(255,255,255,.34);margin-top:16px;line-height:1.6;}
+  .addr{font-style:normal;line-height:1.8;}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 940px){
+    .hero-grid{grid-template-columns:1fr;gap:34px;}
+    .details-grid{grid-template-columns:1fr;}
+    .hero{padding:40px 0 48px;}
+  }
+  @media (max-width: 560px){
+    .wrap{padding:0 16px;}
+    .topbar-inner{justify-content:center;text-align:center;}
+    .topbar-contact{justify-content:center;font-size:.76rem;gap:10px;}
+    .logo{height:38px;}
+    .card{padding:26px 20px 22px;}
+    .offer{padding:22px 20px 20px;}
+    .trust{gap:18px;}
+    .foot-grid{flex-direction:column;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= TOP BAR ================= -->
+<div class="topbar">
+  <div class="wrap topbar-inner">
+    <img class="logo" src="https://salsafeveron2.com/wp-content/uploads/2018/12/sf-logo.png" alt="Salsa Fever On2 Dance Academy">
+    <div class="topbar-contact">
+      <span>83 Franklin St, Jersey City</span>
+      <span class="dot"></span>
+      <a href="tel:+12017921616">201-792-1616</a>
+    </div>
+  </div>
+</div>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="wrap hero-grid">
+
+    <!-- LEFT: offer -->
+    <div>
+      <div class="eyebrow"><span class="pulse"></span> September Cycle · Starts Sept 7</div>
+
+      <h1>Learn to dance<br><span class="accent">On2.</span> Properly.</h1>
+
+      <p class="lede">
+        Jersey City's award-winning salsa academy since 2000. A structured 6-week curriculum
+        that takes you from your first step to <strong>owning any dance floor in the world</strong>.
+      </p>
+
+      <div class="offer">
+        <div class="offer-label">New Student Special</div>
+        <div class="offer-price">
+          <span class="price"><sup>$</sup>100</span>
+          <span class="price-note">first month</span>
+        </div>
+        <p class="offer-sub">First-time students only · Cannot be combined with other offers</p>
+
+        <ul class="includes">
+          <li>
+            <span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.2l2.6 2.6L10 3.4" stroke="#000" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span><strong>Unlimited classes</strong> for a full month — every level, every night we're open</span>
+          </li>
+          <li>
+            <span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.2l2.6 2.6L10 3.4" stroke="#000" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>All workshops included</span>
+          </li>
+          <li>
+            <span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.2l2.6 2.6L10 3.4" stroke="#000" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Movie nights, practice parties &amp; in-house socials</span>
+          </li>
+          <li>
+            <span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.2l2.6 2.6L10 3.4" stroke="#000" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Senior instructors — every one with 10+ years professional experience</span>
+          </li>
+          <li>
+            <span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.2l2.6 2.6L10 3.4" stroke="#000" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Assistants in every class for one-on-one help</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="trust">
+        <div class="trust-item">
+          <div class="trust-num">25 yrs</div>
+          <div class="trust-lbl">In business</div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-num">#1</div>
+          <div class="trust-lbl">Salsa academy on Yelp</div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-num">10+ yrs</div>
+          <div class="trust-lbl">Min. instructor experience</div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-num">No</div>
+          <div class="trust-lbl">Partner required</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: form -->
+    <div class="card">
+      <div class="card-badge">Reserve your spot</div>
+
+      <form id="signupForm" novalidate>
+        <h2>Start dancing this month</h2>
+        <p class="card-sub">Takes about 30 seconds. No account to create.</p>
+
+        <div class="field" id="f-name">
+          <label for="name">Full name <span class="req">*</span></label>
+          <input type="text" id="name" name="name" placeholder="Maria Rodriguez" autocomplete="name" required>
+          <div class="err-msg">Please enter your name</div>
+        </div>
+
+        <div class="field" id="f-phone">
+          <label for="phone">Mobile number <span class="req">*</span></label>
+          <input type="tel" id="phone" name="phone" placeholder="(201) 555-0142" autocomplete="tel" required>
+          <div class="err-msg">Please enter a valid 10-digit mobile number</div>
+        </div>
+
+        <div class="field" id="f-email">
+          <label for="email">Email <span class="req">*</span></label>
+          <input type="email" id="email" name="email" placeholder="maria@example.com" autocomplete="email" required>
+          <div class="err-msg">Please enter a valid email address</div>
+        </div>
+
+        <div class="consent">
+          <input type="checkbox" id="smsConsent" name="smsConsent">
+          <label for="smsConsent">
+            <span class="optional">Optional</span>
+            Text me about classes, schedule changes and offers from Salsa Fever On2.
+            Msg &amp; data rates may apply. Reply STOP to opt out.
+          </label>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Reserve My Spot — $100</button>
+
+        <div class="pay-note">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2.2"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg>
+          Secure checkout · Apple Pay &amp; Google Pay accepted
+        </div>
+
+        <div class="divider">Not ready yet?</div>
+        <button type="button" class="btn btn-secondary" id="askBtn">Text us a question instead</button>
+      </form>
+
+      <!-- success -->
+      <div class="success" id="successBox">
+        <div class="success-icon">
+          <svg viewBox="0 0 24 24" fill="none" width="26" height="26"><path d="M4 12.5l5.5 5.5L20 7" stroke="#000" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 id="successTitle">You're on the list</h3>
+        <p id="successMsg">Next step would be secure checkout.</p>
+        <div class="detail" id="successDetail"></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= DETAILS ================= -->
+<section class="details">
+  <div class="wrap">
+    <div class="details-grid">
+
+      <div class="detail-card">
+        <div class="detail-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg>
+        </div>
+        <h3>September cycle</h3>
+        <p>New 6-week cycle begins <strong>September 7</strong>. Classes run evenings and weekends — join any level.</p>
+      </div>
+
+      <div class="detail-card">
+        <div class="detail-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.2"><path d="M12 21s-7-5.1-7-10a7 7 0 1114 0c0 4.9-7 10-7 10z"/><circle cx="12" cy="11" r="2.6"/></svg>
+        </div>
+        <h3>Where we are</h3>
+        <p><strong>83 Franklin St</strong><br>Jersey City, NJ 07307</p>
+      </div>
+
+      <div class="detail-card">
+        <div class="detail-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.2"><path d="M4 6h16v12H4z"/><path d="M4 7l8 6 8-6"/></svg>
+        </div>
+        <h3>What to bring</h3>
+        <p>Just yourself. <strong>No partner needed.</strong> Wear socks or suede-soled shoes.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= AWARDS ================= -->
+<section class="awards">
+  <div class="wrap">
+    <h2>Recognised across the dance community</h2>
+    <p class="awards-sub">Timing is everything — and so is a track record.</p>
+    <div class="awards-list">
+      <div class="award"><span class="star">★</span><span>Voted <strong>#1 Salsa/Mambo Dance Academy</strong> on Yelp</span></div>
+      <div class="award"><span class="star">★</span><span><strong>Dance Company of the Year 2018</strong> — TainoNation Entertainment</span></div>
+      <div class="award"><span class="star">★</span><span><strong>Best Dance Teachers in Jersey City</strong> 2017 &amp; 2018 — Expertise.com</span></div>
+      <div class="award"><span class="star">★</span><span><strong>Top 3 dance schools</strong> in Jersey City — ThreeBestRated.com</span></div>
+      <div class="award"><span class="star">★</span><span><strong>The Knot Best of Weddings</strong> 2017 Pick</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap foot-grid">
+    <div>
+      <img class="foot-logo" src="https://salsafeveron2.com/wp-content/uploads/2018/12/sf-logo.png" alt="Salsa Fever On2">
+      <address class="addr">
+        83 Franklin St, Jersey City, NJ 07307<br>
+        <a href="tel:+12017921616">201-792-1616</a> ·
+        <a href="mailto:sfon2services@gmail.com">sfon2services@gmail.com</a>
+      </address>
+    </div>
+    <div style="max-width:23rem">
+      <div class="foot-legal">
+        By reserving a spot you agree to be contacted about your enrolment.
+        Marketing texts are optional and require the opt-in above. Reply STOP at any time to unsubscribe.
+        <br><br>
+        <span id="srcTag" style="opacity:.6"></span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+
+  /* ---- FR-1.13: source tag from URL, persisted with the lead ---- */
+  var params = new URLSearchParams(window.location.search);
+  var VALID_SOURCES = ['qr-studio','qr-social','ig-bio','email-campaign','referral','direct'];
+  var raw = (params.get('src') || params.get('source') || 'direct').toLowerCase();
+  var SOURCE = VALID_SOURCES.indexOf(raw) !== -1 ? raw : 'direct';
+  var CONSENT_TEXT_VERSION = 'v1-2026-08';
+  document.getElementById('srcTag').textContent = 'Source: ' + SOURCE;
+
+  /* ---- helpers ---- */
+  function setInvalid(id, bad){
+    document.getElementById(id).classList[bad ? 'add' : 'remove']('invalid');
+  }
+  function digitsOnly(s){ return (s||'').replace(/\D/g,''); }
+
+  function validPhone(v){
+    var d = digitsOnly(v);
+    return d.length === 10 || (d.length === 11 && d.charAt(0) === '1');
+  }
+  function toE164(v){                       /* NFR-12: E.164 on write */
+    var d = digitsOnly(v);
+    if (d.length === 10) return '+1' + d;
+    if (d.length === 11 && d.charAt(0) === '1') return '+' + d;
+    return null;
+  }
+  function validEmail(v){
+    return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test((v||'').trim());
+  }
+
+  /* ---- live phone formatting ---- */
+  var phoneEl = document.getElementById('phone');
+  phoneEl.addEventListener('input', function(){
+    var d = digitsOnly(this.value).slice(0,10);
+    if (d.length > 6)      this.value = '(' + d.slice(0,3) + ') ' + d.slice(3,6) + '-' + d.slice(6);
+    else if (d.length > 3) this.value = '(' + d.slice(0,3) + ') ' + d.slice(3);
+    else if (d.length > 0) this.value = '(' + d;
+    else                   this.value = '';
+  });
+
+  /* clear error styling as the user corrects */
+  ['name','phone','email'].forEach(function(k){
+    document.getElementById(k).addEventListener('input', function(){ setInvalid('f-'+k, false); });
+  });
+
+  /* ---- build the payload the real integration would POST ---- */
+  function buildPayload(intent){
+    var consent = document.getElementById('smsConsent').checked;
+    return {
+      name:  document.getElementById('name').value.trim(),
+      phone: toE164(document.getElementById('phone').value),
+      email: document.getElementById('email').value.trim().toLowerCase(),
+      source: SOURCE,                                     /* FR-1.13 / P-5 */
+      sms_consent: consent,                               /* FR-1.3 — default false */
+      consent_timestamp: consent ? new Date().toISOString() : null,   /* FR-1.4 */
+      consent_text_version: consent ? CONSENT_TEXT_VERSION : null,    /* FR-1.4 */
+      status: 'new',
+      intent: intent,                                     /* checkout | question */
+      created_at: new Date().toISOString()
+    };
+  }
+
+  function showSuccess(title, msg, payload){
+    document.getElementById('signupForm').classList.add('hide');
+    document.getElementById('successTitle').textContent = title;
+    document.getElementById('successMsg').textContent = msg;
+    document.getElementById('successDetail').innerHTML =
+      '<b>Sample mode — nothing was sent.</b><br>' +
+      'This is the record the live integration would create:<br><br>' +
+      '<code style="font-size:.75rem;line-height:1.7;word-break:break-word;display:block">' +
+      JSON.stringify(payload, null, 1).replace(/\n/g,'<br>').replace(/ /g,'&nbsp;') +
+      '</code>';
+    document.getElementById('successBox').classList.add('show');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function validate(){
+    var ok = true;
+    if (!document.getElementById('name').value.trim()){ setInvalid('f-name', true); ok = false; }
+    if (!validPhone(phoneEl.value)){ setInvalid('f-phone', true); ok = false; }
+    if (!validEmail(document.getElementById('email').value)){ setInvalid('f-email', true); ok = false; }
+    return ok;
+  }
+
+  /* ---- primary: would hand off to Stripe Checkout (FR-1.5) ---- */
+  document.getElementById('signupForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    if (!validate()) return;
+    var payload = buildPayload('checkout');
+    showSuccess(
+      'Spot reserved',
+      'In the live version you would now be handed to secure Stripe Checkout for the $100 first-month payment.',
+      payload
+    );
+  });
+
+  /* ---- secondary: records the lead without payment (FR-1.7) ---- */
+  document.getElementById('askBtn').addEventListener('click', function(){
+    if (!validate()) return;
+    var payload = buildPayload('question');
+    showSuccess(
+      'Question received',
+      'The studio would text you back shortly. Your details are saved either way — no payment required.',
+      payload
+    );
+  });
+
+})();
+</script>
+
+</body>
+</html>
