@@ -601,6 +601,14 @@
 (function(){
   'use strict';
 
+  /* ------------------------------------------------------------------
+     Set this to the n8n production webhook URL to go live, e.g.
+       var LEAD_WEBHOOK = 'https://n8n.example.com/webhook/sfo2-lead';
+     Leave it empty ('') and the page stays in sample mode — the form
+     validates and shows the record it *would* send, but posts nothing.
+     ------------------------------------------------------------------ */
+  var LEAD_WEBHOOK = 'https://baseops.app.n8n.cloud/webhook/sfo2-lead';
+
   /* ---- FR-1.13: source tag from URL, persisted with the lead ---- */
   var params = new URLSearchParams(window.location.search);
   var VALID_SOURCES = ['qr-studio','qr-social','ig-bio','email-campaign','referral','direct'];
@@ -707,18 +715,21 @@
     };
   }
 
-  function showSuccess(title, msg, payload){
+  function showSuccess(title, msg, detailHtml){
     document.getElementById('signupForm').classList.add('hide');
     document.getElementById('successTitle').textContent = title;
     document.getElementById('successMsg').textContent = msg;
-    document.getElementById('successDetail').innerHTML =
-      '<b>Sample mode — nothing was sent.</b><br>' +
+    document.getElementById('successDetail').innerHTML = detailHtml;
+    document.getElementById('successBox').classList.add('show');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function sampleDetail(payload){
+    return '<b>Sample mode — nothing was sent.</b><br>' +
       'This is the record the live integration would create:<br><br>' +
       '<code style="font-size:.75rem;line-height:1.7;word-break:break-word;display:block">' +
       JSON.stringify(payload, null, 1).replace(/\n/g,'<br>').replace(/ /g,'&nbsp;') +
       '</code>';
-    document.getElementById('successBox').classList.add('show');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   function validate(){
@@ -726,30 +737,85 @@
     if (!document.getElementById('name').value.trim()){ setInvalid('f-name', true); ok = false; }
     if (!validPhone(phoneEl.value)){ setInvalid('f-phone', true); ok = false; }
     if (!validEmail(document.getElementById('email').value)){ setInvalid('f-email', true); ok = false; }
+    /* dance_role is deliberately absent — optional, must never block (P-6 spirit) */
     return ok;
   }
 
-  /* ---- primary: would hand off to Stripe Checkout (FR-1.5) ---- */
+  /* ---- send the lead to n8n ---- */
+  var submitBtn = document.querySelector('#signupForm button[type=submit]');
+  var askBtn    = document.getElementById('askBtn');
+  var busy      = false;
+
+  function setBusy(btn, on, label){
+    busy = on;
+    submitBtn.disabled = on;
+    askBtn.disabled = on;
+    if (on){ btn.dataset.prev = btn.textContent; btn.textContent = label; }
+    else if (btn.dataset.prev){ btn.textContent = btn.dataset.prev; }
+  }
+
+  function postLead(payload){
+    if (!LEAD_WEBHOOK){                       /* not wired yet — sample mode */
+      return Promise.resolve({ mode: 'sample' });
+    }
+    return fetch(LEAD_WEBHOOK, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }).then(function(r){
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return { mode: 'live' };
+    });
+  }
+
+  /* a failed POST must never look like a completed signup */
+  function failDetail(){
+    return '<b>We could not submit that automatically.</b><br>' +
+      'Nothing was lost on your side — please call or text the studio and ' +
+      'we will get you booked in:<br><br>' +
+      '<a href="tel:+12017921616" style="font-weight:700;color:#111">201-792-1616</a>' +
+      ' &nbsp;·&nbsp; ' +
+      '<a href="mailto:sfon2services@gmail.com" style="font-weight:700;color:#111">sfon2services@gmail.com</a>';
+  }
+
+  function handle(btn, busyLabel, payload, okTitle, okMsg){
+    if (busy) return;
+    setBusy(btn, true, busyLabel);
+    postLead(payload)
+      .then(function(res){
+        if (res.mode === 'sample'){
+          showSuccess(okTitle, okMsg, sampleDetail(payload));
+        } else {
+          showSuccess(okTitle, okMsg,
+            '<b>You are on the list.</b><br>' +
+            'The studio has your details and will confirm your first class shortly.');
+        }
+      })
+      .catch(function(){
+        setBusy(btn, false);
+        showSuccess('Something went wrong',
+                    'Please reach the studio directly and we will sort it out.',
+                    failDetail());
+      });
+  }
+
+  /* ---- primary: lead in, then Stripe Checkout (FR-1.5) ---- */
   document.getElementById('signupForm').addEventListener('submit', function(e){
     e.preventDefault();
     if (!validate()) return;
-    var payload = buildPayload('checkout');
-    showSuccess(
+    handle(submitBtn, 'Sending…', buildPayload('checkout'),
       'Spot reserved',
-      'In the live version you would now be handed to secure Stripe Checkout for the $50 5-class pass.',
-      payload
-    );
+      LEAD_WEBHOOK
+        ? 'Next you would be handed to secure Stripe Checkout for the $50 5-class pass.'
+        : 'In the live version you would now be handed to secure Stripe Checkout for the $50 5-class pass.');
   });
 
   /* ---- secondary: records the lead without payment (FR-1.7) ---- */
-  document.getElementById('askBtn').addEventListener('click', function(){
+  askBtn.addEventListener('click', function(){
     if (!validate()) return;
-    var payload = buildPayload('question');
-    showSuccess(
+    handle(askBtn, 'Sending…', buildPayload('question'),
       'Question received',
-      'The studio would text you back shortly. Your details are saved either way — no payment required.',
-      payload
-    );
+      'The studio will text you back shortly. Your details are saved either way — no payment required.');
   });
 
 })();
