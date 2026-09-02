@@ -706,7 +706,7 @@
       status: 'new',
       intent: intent,                                     /* checkout | question */
       created_at: new Date().toISOString(),
-      /* mirrored onto the Stripe Checkout session so it lands on the payment too */
+      /* mirrored onto the payment session so the tag lands on the payment too */
       stripe_metadata: {
         source: SOURCE,
         dance_role: danceRole() || 'not_provided',
@@ -764,8 +764,31 @@
       body: JSON.stringify(payload)
     }).then(function(r){
       if (!r.ok) throw new Error('HTTP ' + r.status);
-      return { mode: 'live' };
+      /* The workflow replies with { ok, received, errors, invoice_number, payment_url }.
+         payment_url is null whenever checkout is not yet available — the lead is
+         still captured, so a missing URL is not an error. */
+      return r.json().catch(function(){ return {}; }).then(function(body){
+        return { mode: 'live', body: body || {} };
+      });
     });
+  }
+
+  /* ------------------------------------------------------------------
+     Only ever hand the browser to the payment processor's own host.
+     If the workflow were ever compromised or misconfigured, an arbitrary
+     payment_url would be an open redirect straight out of a page people
+     are about to type card details into. Allow-list the host instead.
+     ------------------------------------------------------------------ */
+  var PAY_HOSTS = ['shpp.paragonsolutions.com', 'stage.shpp.paragonsolutions.com'];
+
+  function safePaymentUrl(url){
+    if (!url || typeof url !== 'string') return null;
+    try {
+      var u = new URL(url, window.location.href);
+      if (u.protocol !== 'https:') return null;
+      if (PAY_HOSTS.indexOf(u.hostname) === -1) return null;
+      return u.href;
+    } catch (e) { return null; }
   }
 
   /* a failed POST must never look like a completed signup */
@@ -785,11 +808,29 @@
       .then(function(res){
         if (res.mode === 'sample'){
           showSuccess(okTitle, okMsg, sampleDetail(payload));
-        } else {
-          showSuccess(okTitle, okMsg,
-            '<b>You are on the list.</b><br>' +
-            'The studio has your details and will confirm your first class shortly.');
+          return;
         }
+
+        /* Checkout available, and this submission asked to pay → hand off. */
+        var payUrl = (payload.intent === 'checkout')
+          ? safePaymentUrl(res.body && res.body.payment_url)
+          : null;
+
+        if (payUrl){
+          showSuccess('Taking you to checkout…',
+            'One moment — sending you to our secure payment page.',
+            '<b>Your spot is held.</b><br>' +
+            'If you are not redirected in a few seconds, ' +
+            '<a href="' + payUrl + '" style="font-weight:700;color:#111">tap here to pay</a>.');
+          window.setTimeout(function(){ window.location.assign(payUrl); }, 900);
+          return;
+        }
+
+        /* No checkout link — the lead is captured either way, so say so
+           plainly rather than implying a payment step that will not come. */
+        showSuccess(okTitle, okMsg,
+          '<b>You are on the list.</b><br>' +
+          'The studio has your details and will confirm your first class shortly.');
       })
       .catch(function(){
         setBusy(btn, false);
@@ -799,15 +840,15 @@
       });
   }
 
-  /* ---- primary: lead in, then Stripe Checkout (FR-1.5) ---- */
+  /* ---- primary: lead in, then Paragon hosted checkout (FR-1.5) ---- */
   document.getElementById('signupForm').addEventListener('submit', function(e){
     e.preventDefault();
     if (!validate()) return;
     handle(submitBtn, 'Sending…', buildPayload('checkout'),
       'Spot reserved',
       LEAD_WEBHOOK
-        ? 'Next you would be handed to secure Stripe Checkout for the $50 5-class pass.'
-        : 'In the live version you would now be handed to secure Stripe Checkout for the $50 5-class pass.');
+        ? 'The studio has your details and will be in touch to confirm your first class.'
+        : 'In the live version you would now be handed to secure checkout for the $50 5-class pass.');
   });
 
   /* ---- secondary: records the lead without payment (FR-1.7) ---- */
