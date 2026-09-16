@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Salsa Fever On2 | Complete your purchase</title>
+<meta name="description" content="Complete your New Student Special — 5 Pre-Beginner classes plus the Timing &amp; Musicality workshop for $75 at Salsa Fever On2, Jersey City.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#0d0d0d;
+    --ink:#1a1a1a;
+    --muted:#6b6b6b;
+    --line:#e8e8e8;
+    --gold1:#FBAB7E;
+    --gold2:#F7CE68;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'Open Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);
+    background:#fafafa;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+
+  .topbar{
+    background:var(--black);
+    color:#fff;
+    padding:14px 20px;
+    display:flex;align-items:center;justify-content:space-between;
+    gap:16px;flex-wrap:wrap;
+  }
+  .topbar img{height:30px;display:block;}
+  .topbar .contact{
+    font-size:13px;color:rgba(255,255,255,.72);
+    display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  }
+  .topbar .contact a{color:#fff;text-decoration:none;font-weight:600;}
+
+  .wrap{max-width:860px;margin:0 auto;padding:26px 18px 64px;}
+
+  .band{
+    background:linear-gradient(100deg,var(--gold1),var(--gold2));
+    border-radius:14px;
+    padding:20px 22px;
+    margin-bottom:22px;
+  }
+  .band .eyebrow{
+    font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;
+    color:var(--black);opacity:.75;
+  }
+  .band h1{
+    font-family:'Poppins',sans-serif;
+    font-size:clamp(23px,4.4vw,31px);
+    line-height:1.15;margin:5px 0 0;color:var(--black);font-weight:800;
+  }
+  .band .summary{
+    margin:12px 0 0;font-size:15px;color:#2a2116;font-weight:600;
+  }
+
+  .refbox{
+    display:none;
+    margin:14px 0 0;padding:11px 14px;
+    background:rgba(255,255,255,.62);
+    border:1px solid rgba(0,0,0,.09);
+    border-radius:9px;
+    font-size:13px;color:#2a2116;line-height:1.55;
+  }
+  .refbox code{
+    font-family:ui-monospace,Menlo,Consolas,monospace;
+    font-weight:700;font-size:14px;letter-spacing:.02em;
+  }
+
+  .card{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:8px;
+    min-height:340px;
+  }
+
+  /* Shown only if the WellnessLiving widget fails to render. Never let a blank
+     box be the end of the experience — always leave a way to reach a human. */
+  .fallback{
+    display:none;
+    padding:28px 22px;text-align:center;
+  }
+  .fallback h2{
+    font-family:'Poppins',sans-serif;font-size:19px;margin:0 0 8px;color:var(--ink);
+  }
+  .fallback p{margin:0 auto 16px;max-width:430px;color:var(--muted);font-size:14.5px;line-height:1.65;}
+  .fallback .btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+  .fallback .btn{
+    display:inline-block;padding:11px 20px;border-radius:999px;
+    font-weight:700;font-size:14.5px;text-decoration:none;
+    background:var(--black);color:#fff;
+  }
+  .fallback .btn.alt{background:#fff;color:var(--ink);border:1px solid var(--line);}
+
+  .foot{
+    margin-top:22px;text-align:center;
+    font-size:12.5px;color:var(--muted);line-height:1.7;
+  }
+  .foot a{font-weight:600;}
+  .back{
+    display:inline-block;margin-top:14px;font-size:13.5px;
+    color:var(--muted);text-decoration:none;
+  }
+  .back:hover{color:var(--ink);}
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <img src="https://salsafeveron2.com/wp-content/uploads/2018/12/sf-logo.png" alt="Salsa Fever On2 Dance Academy">
+    <div class="contact">
+      <span>83 Franklin St, Jersey City</span>
+      <a href="tel:+12017921616">201-792-1616</a>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <div class="band">
+      <div class="eyebrow">New Student Special</div>
+      <h1>Complete your purchase</h1>
+      <p class="summary">5 Pre-Beginner classes + the Timing &amp; Musicality workshop — $75</p>
+      <div class="refbox" id="refbox">
+        Your reservation reference is <code id="refcode"></code>.
+        Quote it if you contact the studio about this purchase.
+      </div>
+    </div>
+
+    <div class="card">
+      <div id="wlmount">
+        <wl-store-widget
+          k_business="291153"
+          k_schema="01a0aa47-0ba4-70cc-a157-9ccd27d6ac6e"></wl-store-widget>
+      </div>
+
+      <div class="fallback" id="fallback">
+        <h2>The booking window didn't load</h2>
+        <p>
+          Your spot is still reserved — the studio already has your details.
+          Call or text and we'll take payment directly.
+        </p>
+        <div class="btns">
+          <a class="btn" href="tel:+12017921616">Call 201-792-1616</a>
+          <a class="btn alt" href="mailto:sfon2services@gmail.com">Email the studio</a>
+        </div>
+      </div>
+    </div>
+
+    <p class="foot">
+      Payments are handled by Salsa Fever On2 through WellnessLiving.<br>
+      Questions? <a href="tel:+12017921616">201-792-1616</a> ·
+      <a href="mailto:sfon2services@gmail.com">sfon2services@gmail.com</a>
+    </p>
+
+    <div style="text-align:center">
+      <a class="back" href="/salsaFeverOn2Promotion">← Back to the offer</a>
+    </div>
+
+  </div>
+
+<script type="module" src="https://widgets.wellnessliving.com/store/widget.js"></script>
+<script>
+(function(){
+  /* Show the reservation reference passed through from the landing page.
+     WellnessLiving has no field for our SFO2-XXXXXX identifier, so this is
+     how a purchase can still be tied back to a lead — by a human, reading it. */
+  try {
+    var ref = new URLSearchParams(window.location.search).get('ref') || '';
+    if (/^SFO2-[A-Z0-9]{6}$/.test(ref)) {
+      document.getElementById('refcode').textContent = ref;
+      document.getElementById('refbox').style.display = 'block';
+    }
+  } catch (e) {}
+
+  /* If the widget has not rendered anything after a reasonable wait, assume it
+     failed and surface a way to reach the studio instead of a blank panel. */
+  window.setTimeout(function(){
+    var mount = document.getElementById('wlmount');
+    var el = mount && mount.querySelector('wl-store-widget');
+    var rendered = el && (el.shadowRoot
+      ? el.shadowRoot.childElementCount > 0
+      : el.childElementCount > 0);
+    if (!rendered) {
+      mount.style.display = 'none';
+      document.getElementById('fallback').style.display = 'block';
+    }
+  }, 6000);
+})();
+</script>
+
+</body>
+</html>
