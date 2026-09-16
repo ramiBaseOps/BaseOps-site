@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Salsa Fever On2 | New Student Special — 5 Classes for $75</title>
-<meta name="description" content="Start dancing this week. 5 Pre-Beginner classes plus the Timing &amp; Musicality workshop for $75 at Salsa Fever On2 — Jersey City's award-winning On2 dance academy. No partner needed.">
+<meta name="description" content="Start dancing this week. 5 Pre-Beginner classes for $75 at Salsa Fever On2 — Jersey City's award-winning On2 dance academy. No partner needed.">
 <meta name="robots" content="noindex">
 <meta property="og:title" content="Salsa Fever On2 — New Student Special">
-<meta property="og:description" content="5 Pre-Beginner classes + the Timing &amp; Musicality workshop for $75. Classes every Monday and Saturday — no partner needed.">
+<meta property="og:description" content="5 Pre-Beginner classes for $75. Classes every Monday and Saturday — no partner needed.">
 <meta property="og:type" content="website">
 <link rel="icon" href="https://salsafeveron2.com/wp-content/uploads/2018/12/cropped-logo-270x270.gif">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -418,10 +418,6 @@
           </li>
           <li>
             <span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.2l2.6 2.6L10 3.4" stroke="#000" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <span><strong>Timing &amp; Musicality workshop</strong> included — Mario's signature session</span>
-          </li>
-          <li>
-            <span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.2l2.6 2.6L10 3.4" stroke="#000" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             <span>No partner needed, no experience needed — most people arrive alone</span>
           </li>
           <li>
@@ -430,7 +426,7 @@
           </li>
           <li>
             <span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.2l2.6 2.6L10 3.4" stroke="#000" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <span><strong>Completes your prerequisites</strong> for the Level 1 Beginner cycle</span>
+            <span><strong>A community, not just a class</strong> — students practise together, socialise and go out dancing as a group</span>
           </li>
         </ul>
       </div>
@@ -537,7 +533,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg>
         </div>
         <h3>When you can start</h3>
-        <p>Pre-Beginner runs every <strong>Monday 7pm</strong> and <strong>Saturday 12pm</strong>. No cycle to wait for — come to the next one. Timing &amp; Musicality workshop runs the first Saturday of each month.</p>
+        <p>Pre-Beginner runs every <strong>Monday 7pm</strong> and <strong>Saturday 12pm</strong>. No cycle to wait for — come to the next one.</p>
       </div>
 
       <div class="detail-card">
@@ -611,16 +607,28 @@
 
   /* ------------------------------------------------------------------
      Checkout target after the lead is captured.
-       'wellnessliving' — interim: send buyers to our WellnessLiving store
-                          page (/salsaFeverOn2Promotion/checkout).
-       'paragon'        — use the Paragon hosted payment URL the n8n
-                          workflow returns (once connectivity is fixed).
+       'wellnessliving' — default: our WellnessLiving store page
+                          (/salsaFeverOn2Promotion/checkout). Creates the class
+                          pass in WL automatically, but puts a sign-in wall in
+                          front of the buyer.
+       'paragon'        — the Paragon hosted payment URL returned by /lead.
+                          Card and Apple Pay, no account — but the pass then
+                          has to be created in WL by hand.
      ------------------------------------------------------------------ */
   var CHECKOUT_MODE = 'wellnessliving';
   var WL_CHECKOUT_URL = '/salsaFeverOn2Promotion/checkout';
 
   /* ---- FR-1.13: source tag from URL, persisted with the lead ---- */
   var params = new URLSearchParams(window.location.search);
+
+  /* Per-visit override, for demonstrating one path without switching it on for
+     everyone: ?checkout=paragon or ?checkout=wellnessliving.
+     Anything else is ignored, so a mistyped value can never strand a real
+     student on a checkout that does not exist. */
+  var CHECKOUT_OVERRIDE = (params.get('checkout') || '').toLowerCase();
+  if (CHECKOUT_OVERRIDE === 'paragon' || CHECKOUT_OVERRIDE === 'wellnessliving') {
+    CHECKOUT_MODE = CHECKOUT_OVERRIDE;
+  }
   var VALID_SOURCES = ['qr-studio','qr-social','ig-bio','email-campaign','referral','direct'];
   var raw = (params.get('src') || params.get('source') || 'direct').toLowerCase();
   var SOURCE = VALID_SOURCES.indexOf(raw) !== -1 ? raw : 'direct';
