@@ -81,7 +81,23 @@
     border:1px solid var(--line);
     border-radius:14px;
     padding:8px;
-    min-height:340px;
+  }
+
+  /* The WellnessLiving widget renders into a fixed-height iframe that scrolls
+     internally. Every pixel of chrome above it pushes the product further out
+     of view and makes that nested scroll more likely to be needed, so on a
+     phone the header work is cut right back. */
+  @media (max-width:560px){
+    .topbar{padding:10px 14px;}
+    .topbar img{height:22px;}
+    .topbar .contact{font-size:12px;gap:8px;}
+    .wrap{padding:12px 10px 40px;}
+    .band{padding:13px 15px;margin-bottom:12px;border-radius:12px;}
+    .band h1{font-size:20px;}
+    .band .summary{font-size:13.5px;margin-top:7px;}
+    .refbox{margin-top:10px;padding:8px 11px;font-size:12px;}
+    .card{padding:4px;}
+    .foot{margin-top:14px;font-size:12px;}
   }
 
   /* Shown only if the WellnessLiving widget fails to render. Never let a blank
@@ -131,8 +147,7 @@
       <h1>Complete your purchase</h1>
       <p class="summary">5 Pre-Beginner classes + the Timing &amp; Musicality workshop — $75</p>
       <div class="refbox" id="refbox">
-        Your reservation reference is <code id="refcode"></code>.
-        Quote it if you contact the studio about this purchase.
+        Reference <code id="refcode"></code> — quote it if you contact the studio.
       </div>
     </div>
 
