@@ -395,12 +395,11 @@
     <div>
       <div class="eyebrow"><span class="pulse"></span> Pre-Beginner Classes · Every Monday &amp; Saturday</div>
 
-      <h1>Learn to dance<br><span class="accent">On2.</span> Properly.</h1>
+      <h1>Learn to dance<br><span class="accent">NY On2 style.</span> Authentically.</h1>
 
       <p class="lede">
-        Jersey City's award-winning salsa academy since 2000. Start with the fundamentals,
-        then move into our structured 6-week curriculum — and
-        <strong>own any dance floor in the world</strong>.
+        Jersey City's award-winning salsa academy for almost 30 years. Start with the
+        fundamentals, then move into our structured 6-week curriculum.
       </p>
 
       <div class="offer">
@@ -410,6 +409,7 @@
           <span class="price-note">5 classes</span>
         </div>
         <p class="offer-sub">First-time students only · Valid 45 days</p>
+        <p class="offer-sub">Valued at $150</p>
 
         <ul class="includes">
           <li>
@@ -426,14 +426,14 @@
           </li>
           <li>
             <span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.2l2.6 2.6L10 3.4" stroke="#000" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <span><strong>A community, not just a class</strong> — students practise together, socialise and go out dancing as a group</span>
+            <span><strong>A community, not just a class</strong> — students practice together, socialize and go out dancing as a group</span>
           </li>
         </ul>
       </div>
 
       <div class="trust">
         <div class="trust-item">
-          <div class="trust-num">25 yrs</div>
+          <div class="trust-num">~30 yrs</div>
           <div class="trust-lbl">In business</div>
         </div>
         <div class="trust-item">
@@ -491,22 +491,12 @@
           <input type="checkbox" id="smsConsent" name="smsConsent">
           <label for="smsConsent">
             <span class="optional">Optional</span>
-            Text me about classes, schedule changes and offers from Salsa Fever On2.
+            Email and text me about classes, schedule changes and offers from Salsa Fever On2.
             Msg &amp; data rates may apply. Reply STOP to opt out.
           </label>
         </div>
 
-        <button type="submit" class="btn btn-primary">Get My 5-Class Pass — $75</button>
-
-        <div class="next-classes" id="nextClasses"></div>
-
-        <div class="pay-note">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2.2"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg>
-          Secure checkout · Apple Pay &amp; Google Pay accepted
-        </div>
-
-        <div class="divider">Not ready yet?</div>
-        <button type="button" class="btn btn-secondary" id="askBtn">Text us a question instead</button>
+        <button type="submit" class="btn btn-primary">Register Me</button>
       </form>
 
       <!-- success -->
@@ -559,7 +549,7 @@
 <!-- ================= AWARDS ================= -->
 <section class="awards">
   <div class="wrap">
-    <h2>Recognised across the dance community</h2>
+    <h2>Recognized across the dance community</h2>
     <p class="awards-sub">Timing is everything — and so is a track record.</p>
     <div class="awards-list">
       <div class="award"><span class="star">★</span><span>Voted <strong>#1 Salsa/Mambo Dance Academy</strong> on Yelp</span></div>
@@ -695,11 +685,10 @@
     return out;
   }
 
-  var nc = nextClasses(2);
-  if (nc.length){
-    document.getElementById('nextClasses').innerHTML =
-      '<span>Next classes:</span> ' + nc.join(' &nbsp;·&nbsp; ');
-  }
+  /* The page deliberately shows no dates — they would need maintaining, and a
+     stale date on a live page is worse than none. The registration email
+     computes the real upcoming dates at send time instead.
+     nextClasses() is kept because the payload and future variants use it. */
 
   /* ---- optional lead/follow — never blocks the sale ---- */
   function danceRole(){
@@ -759,15 +748,13 @@
     return ok;
   }
 
-  /* ---- send the lead to n8n ---- */
+  /* ---- send the lead to the API ---- */
   var submitBtn = document.querySelector('#signupForm button[type=submit]');
-  var askBtn    = document.getElementById('askBtn');
   var busy      = false;
 
   function setBusy(btn, on, label){
     busy = on;
     submitBtn.disabled = on;
-    askBtn.disabled = on;
     if (on){ btn.dataset.prev = btn.textContent; btn.textContent = label; }
     else if (btn.dataset.prev){ btn.textContent = btn.dataset.prev; }
   }
@@ -891,14 +878,6 @@
       LEAD_WEBHOOK
         ? 'The studio has your details and will be in touch to confirm your first class.'
         : 'In the live version you would now be handed to secure checkout for the $75 5-class pass.');
-  });
-
-  /* ---- secondary: records the lead without payment (FR-1.7) ---- */
-  askBtn.addEventListener('click', function(){
-    if (!validate()) return;
-    handle(askBtn, 'Sending…', buildPayload('question'),
-      'Question received',
-      'The studio will text you back shortly. Your details are saved either way — no payment required.');
   });
 
 })();
