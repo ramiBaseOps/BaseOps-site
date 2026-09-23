@@ -134,10 +134,23 @@
     margin-bottom:10px;
   }
   .offer-price{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:6px;}
+  /* The offer price carries the page's accent gradient; the struck anchor stays
+     muted white. Two equally bright numbers read as a pricing error — the
+     contrast is what makes the markdown legible. */
   .price{
     font-family:var(--head);font-weight:800;
     font-size:clamp(2.6rem,7vw,3.6rem);line-height:1;
-    color:var(--white);letter-spacing:-.02em;
+    letter-spacing:-.02em;
+    color:var(--gold);
+    background:var(--grad-r);
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+  }
+  /* Older clients that ignore background-clip fall back to the solid gold above,
+     so the price is never invisible. */
+  @supports not ((-webkit-background-clip:text) or (background-clip:text)){
+    .price{ -webkit-text-fill-color:var(--gold); color:var(--gold); }
   }
   .price sup{font-size:.42em;font-weight:700;top:-.65em;position:relative;margin-right:2px;}
   .price-note{font-family:var(--head);font-size:.95rem;font-weight:500;color:rgba(255,255,255,.65);}
