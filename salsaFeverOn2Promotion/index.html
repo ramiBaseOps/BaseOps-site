@@ -141,6 +141,16 @@
   }
   .price sup{font-size:.42em;font-weight:700;top:-.65em;position:relative;margin-right:2px;}
   .price-note{font-family:var(--head);font-size:.95rem;font-weight:500;color:rgba(255,255,255,.65);}
+  /* Struck-through anchor price. Sits left of the offer price so the eye reads
+     the markdown before the number it is paying. */
+  .price-was{
+    font-family:var(--head);font-weight:700;
+    font-size:clamp(1.5rem,4vw,2.1rem);line-height:1;
+    color:rgba(255,255,255,.42);
+    text-decoration:line-through;
+    text-decoration-thickness:2px;
+  }
+  .price-was sup{font-size:.5em;font-weight:700;top:-.5em;position:relative;margin-right:1px;}
   .offer-sub{font-size:.92rem;color:rgba(255,255,255,.6);margin:0;}
 
   .includes{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:11px;}
@@ -398,17 +408,18 @@
       <h1>Learn to dance<br><span class="accent">NY On2 style.</span> Authentically.</h1>
 
       <p class="lede">
-        Jersey City's award-winning salsa academy for almost 30 years. Start with the
+        Jersey City's award-winning salsa dance academy for almost 30 years. Start with the
         fundamentals, then move into our structured 6-week curriculum.
       </p>
 
       <div class="offer">
         <div class="offer-label">New Student Special</div>
         <div class="offer-price">
+          <span class="price-was" aria-label="Regular price 150 dollars"><sup>$</sup>150</span>
           <span class="price"><sup>$</sup>75</span>
           <span class="price-note">5 classes</span>
         </div>
-        <p class="offer-sub">Valued at $150</p>
+        <p class="offer-sub">50% off our regular price</p>
         <p class="offer-sub">First-time students only · Valid 45 days</p>
 
         <ul class="includes">
