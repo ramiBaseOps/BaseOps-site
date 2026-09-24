@@ -684,7 +684,15 @@
   var WL_CHECKOUT_URL = '/salsaFeverOn2Promotion/checkout';
 
   /* ---- FR-1.13: source tag from URL, persisted with the lead ---- */
-  var params = new URLSearchParams(window.location.search);
+  /* Paragon owns the return URL and appends its own transaction parameters to
+     the Submit URL we configured. If it joins them with '?' rather than '&',
+     the browser reads everything after the first pair as part of that value:
+     "?paid=1?PNRef=123" parses paid as "1?PNRef=123", not "1". Normalising
+     every '?' after the first into '&' costs nothing on a clean URL and
+     rescues the malformed one. */
+  var params = new URLSearchParams(
+    window.location.search.replace(/\?/g, function(m, i){ return i === 0 ? '?' : '&'; })
+  );
 
   /* Per-visit override, for demonstrating one path without switching it on for
      everyone: ?checkout=paragon or ?checkout=wellnessliving.
@@ -987,8 +995,24 @@
      student learns what happens next, so it repeats the essentials.
      ------------------------------------------------------------------ */
   (function handlePaymentReturn(){
-    var paid   = params.get('paid') === '1';
-    var failed = params.get('payment') === 'failed';
+    /* Prefix matching, not equality. Exact equality against a value Paragon
+       may have concatenated something onto is how a paying student ends up
+       being shown the sales page again. */
+    var paid   = String(params.get('paid') || '').indexOf('1') === 0;
+    var failed = String(params.get('payment') || '').indexOf('failed') === 0;
+
+    /* Last resort: Paragon sent us back with transaction parameters but
+       neither of our own markers survived. Result 0 is an approval; anything
+       else is not. Better a correct outcome from their data than the offer
+       page shown to someone who has already paid. */
+    if (!paid && !failed) {
+      var result = params.get('Result') || params.get('result');
+      var hasTxn = params.get('PNRef') || params.get('pnref') ||
+                   params.get('InvoiceNumber') || params.get('invoice_id');
+      if (result !== null || hasTxn) {
+        if (String(result).indexOf('0') === 0) { paid = true; } else { failed = true; }
+      }
+    }
     if (!paid && !failed) return;
 
     if (window.top !== window.self) {
