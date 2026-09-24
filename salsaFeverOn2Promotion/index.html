@@ -103,7 +103,8 @@
      Applied by the return handler, never on a normal visit. */
   body.outcome .hero-copy,
   body.outcome .details,
-  body.outcome .awards{display:none;}
+  body.outcome .awards,
+  body.outcome .card-badge{display:none;}
   body.outcome .hero-grid{grid-template-columns:1fr;max-width:620px;}
   body.outcome .hero{padding:40px 0 48px;}
   .eyebrow{
@@ -531,8 +532,6 @@
           Secure checkout · No account needed
         </div>
 
-        <div class="divider">Not ready yet?</div>
-        <button type="button" class="btn btn-secondary" id="askBtn">Text us a question instead</button>
       </form>
 
       <!-- success -->
@@ -834,13 +833,11 @@
 
   /* ---- send the lead to n8n ---- */
   var submitBtn = document.querySelector('#signupForm button[type=submit]');
-  var askBtn    = document.getElementById('askBtn');
   var busy      = false;
 
   function setBusy(btn, on, label){
     busy = on;
     submitBtn.disabled = on;
-    askBtn.disabled = on;
     if (on){ btn.dataset.prev = btn.textContent; btn.textContent = label; }
     else if (btn.dataset.prev){ btn.textContent = btn.dataset.prev; }
   }
@@ -1046,17 +1043,20 @@
     showSuccess(
       'Payment received',
       'You are booked in. Here is everything you need for your first class.',
+      '<p style="margin:0 0 8px"><b>👉 Two simple things to do before class</b></p>' +
+      '<p style="margin:0 0 8px"><b>1.</b> Create your studio account so we can attach your pass: ' +
+      '<a href="https://www.wellnessliving.com/signup/salsa_fever_on2_dance_academy-bn22o6" ' +
+      'style="font-weight:700">wellnessliving.com</a>. ' +
+      'Use the same name and email you paid with.</p>' +
+      '<p style="margin:0 0 16px"><b>2.</b> Call us at ' +
+      '<a href="tel:+12017921616" style="font-weight:700">(201) 792-1616</a> ' +
+      'to select and confirm your first class.</p>' +
       '<p style="margin:0 0 12px"><b>When to come</b><br>' +
       'Pre-Beginner runs every <b>Monday 7pm</b> and <b>Saturday 12pm</b>. ' +
       'No cycle to wait for — come to the next one.</p>' +
       '<p style="margin:0 0 12px"><b>Where</b><br>' +
       '83 Franklin St, Jersey City, NJ 07307<br>' +
       'Wear socks or suede-soled shoes. No partner needed.</p>' +
-      '<p style="margin:0 0 12px"><b>One thing before your first class</b><br>' +
-      'Create your studio account so we can attach your pass: ' +
-      '<a href="https://www.wellnessliving.com/signup/salsa_fever_on2_dance_academy-bn22o6" ' +
-      'style="font-weight:700">wellnessliving.com</a>. ' +
-      'Use the same name and email you paid with.</p>' +
       (ref ? '<p style="margin:0">Your reference is <b>' + ref + '</b>. ' +
              'Quote it if you contact the studio about this purchase.</p>' : '')
     );
@@ -1121,14 +1121,6 @@
       LEAD_WEBHOOK
         ? 'The studio has your details and will be in touch to confirm your first class.'
         : 'In the live version you would now be handed to secure checkout for the $75 5-class pass.');
-  });
-
-  /* ---- secondary: records the lead without payment (FR-1.7) ---- */
-  askBtn.addEventListener('click', function(){
-    if (!validate()) return;
-    handle(askBtn, 'Sending…', buildPayload('question'),
-      'Question received',
-      'The studio will text you back shortly. Your details are saved either way — no payment required.');
   });
 
 })();
