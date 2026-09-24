@@ -894,6 +894,72 @@
       });
   }
 
+  /* ------------------------------------------------------------------
+     Return from the payment page.
+
+     Paragon's "Submit URL" (Fields tab) is the redirect used after a
+     successful payment, and it lands here with ?paid=1. Without this block
+     the student is simply shown the sales page again, still being sold
+     something they have just bought.
+
+     Deliberately does not claim the pass is on their WellnessLiving profile:
+     on the Paragon path it is not, and the welcome email is the thing that
+     carries the signup link. While that email is silent (unverified sender
+     domain) this page is the only place the student learns what happens
+     next, so it repeats the essentials rather than relying on the email.
+
+     Anything Paragon appends alongside paid=1 is shown when present and
+     omitted when not, so this works whether or not extra parameters arrive.
+     ------------------------------------------------------------------ */
+  (function handlePaidReturn(){
+    var paid   = params.get('paid') === '1';
+    var failed = params.get('payment') === 'failed';
+    if (!paid && !failed) return;
+
+    var ref = params.get('ref') || params.get('InvoiceNumber') || params.get('invoice') || '';
+    ref = ref.replace(/[^A-Za-z0-9-]/g, '');
+
+    /* Paragon's ErrorURL lands here. Without this the student who just had a
+       card declined is shown the sales page again with no acknowledgement.
+       Deliberately does not promise they were not charged — an error can occur
+       after authorisation, and we cannot see that from here. */
+    if (failed) {
+      showSuccess(
+        'That payment did not go through',
+        'Nothing is lost — your details are saved.',
+        (ref
+          ? '<p style="margin:0 0 12px"><a href="' + WL_CHECKOUT_URL + '?ref=' + encodeURIComponent(ref) +
+            '" style="font-weight:700">Try the payment again</a></p>'
+          : '<p style="margin:0 0 12px">Call or text the studio on ' +
+            '<a href="tel:+12017921616" style="font-weight:700">201-792-1616</a> ' +
+            'and we will take it from there.</p>') +
+        '<p style="margin:0">If a charge does show up on your statement, tell us and we will sort it out.</p>'
+      );
+      return;
+    }
+
+    var detail =
+      '<p style="margin:0 0 12px"><b>When to come</b><br>' +
+      'Pre-Beginner runs every <b>Monday 7pm</b> and <b>Saturday 12pm</b>. ' +
+      'No cycle to wait for — come to the next one.</p>' +
+      '<p style="margin:0 0 12px"><b>Where</b><br>' +
+      '83 Franklin St, Jersey City, NJ 07307<br>' +
+      'Wear socks or suede-soled shoes. No partner needed.</p>' +
+      '<p style="margin:0 0 12px"><b>One thing before your first class</b><br>' +
+      'Create your studio account so we can attach your pass: ' +
+      '<a href="https://www.wellnessliving.com/signup/salsa_fever_on2_dance_academy-bn22o6" ' +
+      'style="font-weight:700">wellnessliving.com</a>. ' +
+      'Use the same name and email you paid with.</p>' +
+      (ref ? '<p style="margin:0">Your reference is <b>' + ref + '</b>. ' +
+             'Quote it if you contact the studio about this purchase.</p>' : '');
+
+    showSuccess(
+      'Payment received',
+      'You are booked in. Here is everything you need for your first class.',
+      detail
+    );
+  })();
+
   /* ---- primary: lead in, then checkout (WellnessLiving for now; Paragon later) (FR-1.5) ---- */
   document.getElementById('signupForm').addEventListener('submit', function(e){
     e.preventDefault();
