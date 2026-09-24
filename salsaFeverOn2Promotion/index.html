@@ -92,6 +92,20 @@
     position:relative;z-index:2;
     display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:start;
   }
+  /* Payment outcome takes over the page.
+
+     Without this the confirmation is a panel inside the form card, sitting in
+     the middle of a full sales page: struck price, "Get My 5-Class Pass",
+     awards and all. A student who has just paid gets shown the pitch again,
+     and on a narrow screen the card is below the hero, so the first thing
+     they see after handing over money is the offer they already accepted.
+
+     Applied by the return handler, never on a normal visit. */
+  body.outcome .hero-copy,
+  body.outcome .details,
+  body.outcome .awards{display:none;}
+  body.outcome .hero-grid{grid-template-columns:1fr;max-width:620px;}
+  body.outcome .hero{padding:40px 0 48px;}
   .eyebrow{
     display:inline-flex;align-items:center;gap:9px;
     font-family:var(--head);font-weight:600;font-size:.74rem;
@@ -403,7 +417,7 @@
   <div class="wrap hero-grid">
 
     <!-- LEFT: offer -->
-    <div>
+    <div class="hero-copy">
       <div class="eyebrow"><span class="pulse"></span> Pre-Beginner Classes · Every Monday &amp; Saturday</div>
 
       <h1>Learn to dance<br><span class="accent">NY On2 style.</span> Authentically.</h1>
@@ -983,6 +997,9 @@
         return;
       } catch (e) { /* cross-origin framer: render in place rather than nothing */ }
     }
+
+    /* Strip the sales page. Whatever the outcome, they are past being sold to. */
+    document.body.classList.add('outcome');
 
     var ref = params.get('ref') || params.get('InvoiceNumber') || params.get('invoice') || '';
     ref = ref.replace(/[^A-Za-z0-9-]/g, '');
