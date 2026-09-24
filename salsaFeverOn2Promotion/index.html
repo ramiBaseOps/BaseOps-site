@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Salsa Fever On2 | New Student Special — 5 Classes for $75</title>
-<meta name="description" content="Start dancing this week. 5 Pre-Beginner classes for $75 at Salsa Fever On2 — Jersey City's award-winning On2 dance academy. No partner needed.">
+<meta name="description" content="Start dancing now. 5 Pre-Beginner classes for $75 at Salsa Fever On2 — Jersey City's award-winning NY On2 dance academy. No partner needed.">
 <meta name="robots" content="noindex">
 <meta property="og:title" content="Salsa Fever On2 — New Student Special">
 <meta property="og:description" content="5 Pre-Beginner classes for $75. Classes every Monday and Saturday — no partner needed.">
@@ -141,6 +141,17 @@
   }
   .price sup{font-size:.42em;font-weight:700;top:-.65em;position:relative;margin-right:2px;}
   .price-note{font-family:var(--head);font-size:.95rem;font-weight:500;color:rgba(255,255,255,.65);}
+  /* Struck-through anchor price. Sits left of the offer price so the eye reads
+     the markdown before the number it is paying. */
+  .price-was{
+    font-family:var(--head);font-weight:800;
+    font-size:clamp(2.6rem,7vw,3.6rem);line-height:1;
+    color:rgba(255,255,255,.42);
+    letter-spacing:-.02em;
+    text-decoration:line-through;
+    text-decoration-thickness:3px;
+  }
+  .price-was sup{font-size:.42em;font-weight:700;top:-.65em;position:relative;margin-right:2px;}
   .offer-sub{font-size:.92rem;color:rgba(255,255,255,.6);margin:0;}
 
   .includes{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:11px;}
@@ -395,20 +406,21 @@
     <div>
       <div class="eyebrow"><span class="pulse"></span> Pre-Beginner Classes · Every Monday &amp; Saturday</div>
 
-      <h1>Learn to dance<br><span class="accent">On2.</span> Properly.</h1>
+      <h1>Learn to dance<br><span class="accent">NY On2 style.</span> Authentically.</h1>
 
       <p class="lede">
-        Jersey City's award-winning salsa academy since 2000. Start with the fundamentals,
-        then move into our structured 6-week curriculum — and
-        <strong>own any dance floor in the world</strong>.
+        Jersey City's award-winning salsa dance academy for almost 30 years. Start with the
+        fundamentals, then move into our structured 6-week curriculum.
       </p>
 
       <div class="offer">
         <div class="offer-label">New Student Special</div>
         <div class="offer-price">
+          <span class="price-was" aria-label="Regular price 150 dollars"><sup>$</sup>150</span>
           <span class="price"><sup>$</sup>75</span>
           <span class="price-note">5 classes</span>
         </div>
+        <p class="offer-sub">50% off our regular price</p>
         <p class="offer-sub">First-time students only · Valid 45 days</p>
 
         <ul class="includes">
@@ -426,14 +438,14 @@
           </li>
           <li>
             <span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.2l2.6 2.6L10 3.4" stroke="#000" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <span><strong>A community, not just a class</strong> — students practise together, socialise and go out dancing as a group</span>
+            <span><strong>A community, not just a class</strong> — students practice together, socialize and go out dancing as a group</span>
           </li>
         </ul>
       </div>
 
       <div class="trust">
         <div class="trust-item">
-          <div class="trust-num">25 yrs</div>
+          <div class="trust-num">~30 yrs</div>
           <div class="trust-lbl">In business</div>
         </div>
         <div class="trust-item">
@@ -456,8 +468,8 @@
       <div class="card-badge">Reserve your spot</div>
 
       <form id="signupForm" novalidate>
-        <h2>Start dancing this week</h2>
-        <p class="card-sub">Takes about 30 seconds. No account to create.</p>
+        <h2>Start dancing now</h2>
+        <p class="card-sub">Takes about 30 seconds.</p>
 
         <div class="field" id="f-name">
           <label for="name">Full name <span class="req">*</span></label>
@@ -491,7 +503,7 @@
           <input type="checkbox" id="smsConsent" name="smsConsent">
           <label for="smsConsent">
             <span class="optional">Optional</span>
-            Text me about classes, schedule changes and offers from Salsa Fever On2.
+            Email and text me about classes, schedule changes and offers from Salsa Fever On2.
             Msg &amp; data rates may apply. Reply STOP to opt out.
           </label>
         </div>
@@ -502,7 +514,7 @@
 
         <div class="pay-note">
           <svg viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2.2"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg>
-          Secure checkout · Apple Pay &amp; Google Pay accepted
+          Secure checkout · No account needed
         </div>
 
         <div class="divider">Not ready yet?</div>
@@ -1007,6 +1019,56 @@
       (ref ? '<p style="margin:0">Your reference is <b>' + ref + '</b>. ' +
              'Quote it if you contact the studio about this purchase.</p>' : '')
     );
+  })();
+
+  /* ------------------------------------------------------------------
+     Resume an abandoned checkout.
+
+     The confirmation email's "complete your purchase" button carries ?ref.
+     Without this the student would be shown a blank form, fill it again, and
+     create a SECOND lead row with a new reference while the first is
+     orphaned. POST /resume mints a fresh token against the row they already
+     have, so one student stays one row.
+
+     Runs only when there is no payment outcome in the URL, so it never fights
+     with the return handler above. Any failure falls through to the normal
+     form rather than stranding them: filling it again is a worse outcome than
+     a duplicate row, but a dead page is worse than both.
+     ------------------------------------------------------------------ */
+  (function resumeFromReference(){
+    var ref = (params.get('ref') || '').toUpperCase();
+    if (!ref) return;
+    if (params.get('paid') === '1' || params.get('payment') === 'failed') return;
+    if (!/^SFO2-[A-Z0-9]{6}$/.test(ref)) return;
+    if (!LEAD_WEBHOOK) return;
+
+    showSuccess('Picking up where you left off…',
+                'One moment — reopening your secure payment page.', '');
+
+    fetch(LEAD_WEBHOOK.replace(/\/lead$/, '/resume'), {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ref: ref })
+    })
+      .then(function(r){ return r.json().catch(function(){ return {}; }); })
+      .then(function(body){
+        if (body && body.already_paid) {
+          showSuccess('You have already paid for this',
+            'Nothing more to do. Your reference is ' + ref + '.',
+            '<p style="margin:0">If you have not had your welcome email, call or text the studio on ' +
+            '<a href="tel:+12017921616" style="font-weight:700">201-792-1616</a>.</p>');
+          return;
+        }
+        var payUrl = body && safePaymentUrl(body.payment_url);
+        if (!payUrl) { showForm(); return; }
+        goToCheckout(payUrl, '', ref, body.first_name || '');
+      })
+      .catch(function(){ showForm(); });
+
+    function showForm(){
+      document.getElementById('successBox').classList.remove('show');
+      document.getElementById('signupForm').classList.remove('hide');
+    }
   })();
 
   /* ---- primary: lead in, then checkout (Paragon) (FR-1.5) ---- */
