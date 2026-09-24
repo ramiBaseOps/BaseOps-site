@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Salsa Fever On2 | New Student Special — 5 Classes for $75</title>
-<meta name="description" content="Start dancing this week. 5 Pre-Beginner classes for $75 at Salsa Fever On2 — Jersey City's award-winning On2 dance academy. No partner needed.">
+<meta name="description" content="Start dancing now. 5 Pre-Beginner classes for $75 at Salsa Fever On2 — Jersey City's award-winning NY On2 dance academy. No partner needed.">
 <meta name="robots" content="noindex">
 <meta property="og:title" content="Salsa Fever On2 — New Student Special">
 <meta property="og:description" content="5 Pre-Beginner classes for $75. Classes every Monday and Saturday — no partner needed.">
@@ -134,13 +134,37 @@
     margin-bottom:10px;
   }
   .offer-price{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:6px;}
+  /* The offer price carries the page's accent gradient; the struck anchor stays
+     muted white. Two equally bright numbers read as a pricing error — the
+     contrast is what makes the markdown legible. */
   .price{
     font-family:var(--head);font-weight:800;
     font-size:clamp(2.6rem,7vw,3.6rem);line-height:1;
-    color:var(--white);letter-spacing:-.02em;
+    letter-spacing:-.02em;
+    color:var(--gold);
+    background:var(--grad-r);
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+  }
+  /* Older clients that ignore background-clip fall back to the solid gold above,
+     so the price is never invisible. */
+  @supports not ((-webkit-background-clip:text) or (background-clip:text)){
+    .price{ -webkit-text-fill-color:var(--gold); color:var(--gold); }
   }
   .price sup{font-size:.42em;font-weight:700;top:-.65em;position:relative;margin-right:2px;}
   .price-note{font-family:var(--head);font-size:.95rem;font-weight:500;color:rgba(255,255,255,.65);}
+  /* Struck-through anchor price. Sits left of the offer price so the eye reads
+     the markdown before the number it is paying. */
+  .price-was{
+    font-family:var(--head);font-weight:800;
+    font-size:clamp(2.6rem,7vw,3.6rem);line-height:1;
+    color:rgba(255,255,255,.42);
+    letter-spacing:-.02em;
+    text-decoration:line-through;
+    text-decoration-thickness:3px;
+  }
+  .price-was sup{font-size:.42em;font-weight:700;top:-.65em;position:relative;margin-right:2px;}
   .offer-sub{font-size:.92rem;color:rgba(255,255,255,.6);margin:0;}
 
   .includes{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:11px;}
@@ -395,20 +419,21 @@
     <div>
       <div class="eyebrow"><span class="pulse"></span> Pre-Beginner Classes · Every Monday &amp; Saturday</div>
 
-      <h1>Learn to dance<br><span class="accent">On2.</span> Properly.</h1>
+      <h1>Learn to dance<br><span class="accent">NY On2 style.</span> Authentically.</h1>
 
       <p class="lede">
-        Jersey City's award-winning salsa academy since 2000. Start with the fundamentals,
-        then move into our structured 6-week curriculum — and
-        <strong>own any dance floor in the world</strong>.
+        Jersey City's award-winning salsa dance academy for almost 30 years. Start with the
+        fundamentals, then move into our structured 6-week curriculum.
       </p>
 
       <div class="offer">
         <div class="offer-label">New Student Special</div>
         <div class="offer-price">
+          <span class="price-was" aria-label="Regular price 150 dollars"><sup>$</sup>150</span>
           <span class="price"><sup>$</sup>75</span>
           <span class="price-note">5 classes</span>
         </div>
+        <p class="offer-sub">50% off our regular price</p>
         <p class="offer-sub">First-time students only · Valid 45 days</p>
 
         <ul class="includes">
@@ -426,14 +451,14 @@
           </li>
           <li>
             <span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.2l2.6 2.6L10 3.4" stroke="#000" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <span><strong>A community, not just a class</strong> — students practise together, socialise and go out dancing as a group</span>
+            <span><strong>A community, not just a class</strong> — students practice together, socialize and go out dancing as a group</span>
           </li>
         </ul>
       </div>
 
       <div class="trust">
         <div class="trust-item">
-          <div class="trust-num">25 yrs</div>
+          <div class="trust-num">~30 yrs</div>
           <div class="trust-lbl">In business</div>
         </div>
         <div class="trust-item">
@@ -456,8 +481,8 @@
       <div class="card-badge">Reserve your spot</div>
 
       <form id="signupForm" novalidate>
-        <h2>Start dancing this week</h2>
-        <p class="card-sub">Takes about 30 seconds. No account to create.</p>
+        <h2>Start dancing now</h2>
+        <p class="card-sub">Takes about 30 seconds.</p>
 
         <div class="field" id="f-name">
           <label for="name">Full name <span class="req">*</span></label>
@@ -491,22 +516,12 @@
           <input type="checkbox" id="smsConsent" name="smsConsent">
           <label for="smsConsent">
             <span class="optional">Optional</span>
-            Text me about classes, schedule changes and offers from Salsa Fever On2.
+            Email and text me about classes, schedule changes and offers from Salsa Fever On2.
             Msg &amp; data rates may apply. Reply STOP to opt out.
           </label>
         </div>
 
-        <button type="submit" class="btn btn-primary">Get My 5-Class Pass — $75</button>
-
-        <div class="next-classes" id="nextClasses"></div>
-
-        <div class="pay-note">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2.2"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg>
-          Secure checkout · Apple Pay &amp; Google Pay accepted
-        </div>
-
-        <div class="divider">Not ready yet?</div>
-        <button type="button" class="btn btn-secondary" id="askBtn">Text us a question instead</button>
+        <button type="submit" class="btn btn-primary">Register Me</button>
       </form>
 
       <!-- success -->
@@ -517,29 +532,6 @@
         <h3 id="successTitle">You're on the list</h3>
         <p id="successMsg">Next step would be secure checkout.</p>
         <div class="detail" id="successDetail"></div>
-      </div>
-
-      <!-- inline payment: Paragon's hosted page, framed rather than redirected to -->
-      <div id="payBox" style="display:none">
-        <div style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55);margin:0 0 6px">
-          Step 2 of 2 · Secure payment
-        </div>
-        <h3 style="font-family:'Poppins',sans-serif;font-size:19px;font-weight:700;color:#fff;margin:0 0 4px">
-          Your spot is held, <span id="payName">there</span>
-        </h3>
-        <p style="font-size:13.5px;color:rgba(255,255,255,.62);margin:0 0 14px;line-height:1.55">
-          Reference <span id="payRef" style="font-family:ui-monospace,Menlo,monospace;color:#fff;font-weight:700"></span>
-          · card details go straight to our payment processor, never to us.
-        </p>
-        <div style="background:#fff;border-radius:12px;overflow:hidden">
-          <iframe id="payFrame" title="Secure payment" allow="payment *"
-                  referrerpolicy="origin"
-                  style="width:100%;height:620px;border:0;display:block"></iframe>
-        </div>
-        <p style="font-size:12.5px;color:rgba(255,255,255,.45);margin:12px 0 0;line-height:1.6">
-          Trouble paying? Call <a href="tel:+12017921616" style="color:#fff;font-weight:700">201-792-1616</a>
-          and quote your reference — your spot is already held.
-        </p>
       </div>
     </div>
 
@@ -582,7 +574,7 @@
 <!-- ================= AWARDS ================= -->
 <section class="awards">
   <div class="wrap">
-    <h2>Recognised across the dance community</h2>
+    <h2>Recognized across the dance community</h2>
     <p class="awards-sub">Timing is everything — and so is a track record.</p>
     <div class="awards-list">
       <div class="award"><span class="star">★</span><span>Voted <strong>#1 Salsa/Mambo Dance Academy</strong> on Yelp</span></div>
@@ -638,17 +630,7 @@
                           Card and Apple Pay, no account — but the pass then
                           has to be created in WL by hand.
      ------------------------------------------------------------------ */
-  /* ==================================================================
-     DIRECT variant. Identical to /salsaFeverOn2Promotion except that
-     Paragon's hosted payment page is FRAMED INTO THIS PAGE instead of
-     being redirected to. The student never leaves baseops.tech.
-
-     Card data still goes straight from the iframe to Paragon — it never
-     touches this page or our servers, so this stays a hosted-page
-     integration and does not widen PCI scope the way self-hosted card
-     fields would.
-     ================================================================== */
-  var CHECKOUT_MODE = 'paragon';
+  var CHECKOUT_MODE = 'wellnessliving';
   var WL_CHECKOUT_URL = '/salsaFeverOn2Promotion/checkout';
 
   /* ---- FR-1.13: source tag from URL, persisted with the lead ---- */
@@ -728,11 +710,10 @@
     return out;
   }
 
-  var nc = nextClasses(2);
-  if (nc.length){
-    document.getElementById('nextClasses').innerHTML =
-      '<span>Next classes:</span> ' + nc.join(' &nbsp;·&nbsp; ');
-  }
+  /* The page deliberately shows no dates — they would need maintaining, and a
+     stale date on a live page is worse than none. The registration email
+     computes the real upcoming dates at send time instead.
+     nextClasses() is kept because the payload and future variants use it. */
 
   /* ---- optional lead/follow — never blocks the sale ---- */
   function danceRole(){
@@ -792,15 +773,13 @@
     return ok;
   }
 
-  /* ---- send the lead to n8n ---- */
+  /* ---- send the lead to the API ---- */
   var submitBtn = document.querySelector('#signupForm button[type=submit]');
-  var askBtn    = document.getElementById('askBtn');
   var busy      = false;
 
   function setBusy(btn, on, label){
     busy = on;
     submitBtn.disabled = on;
-    askBtn.disabled = on;
     if (on){ btn.dataset.prev = btn.textContent; btn.textContent = label; }
     else if (btn.dataset.prev){ btn.textContent = btn.dataset.prev; }
   }
@@ -847,32 +826,12 @@
     return safePaymentUrl(paragonUrl);
   }
 
-  /* Frame the payment page rather than navigating to it.
-     WellnessLiving mode still redirects — only the Paragon path is inlined,
-     because only Paragon's page permits framing (verified: it sends no
-     X-Frame-Options and its own guide references an embedded HPP iframe). */
-  function goToCheckout(url, lead, ref, firstName){
-    if (CHECKOUT_MODE !== 'paragon'){
-      showSuccess('Taking you to checkout…',
-        'One moment — sending you to our secure payment page.',
-        lead + 'If you are not redirected in a few seconds, ' +
-        '<a href="' + url + '" style="font-weight:700;color:#111">tap here to pay</a>.');
-      window.setTimeout(function(){ window.location.assign(url); }, 900);
-      return;
-    }
-
-    document.getElementById('signupForm').classList.add('hide');
-    if (firstName) document.getElementById('payName').textContent = firstName;
-    document.getElementById('payRef').textContent = ref || '';
-
-    var frame = document.getElementById('payFrame');
-    frame.src = url;
-    document.getElementById('payBox').style.display = 'block';
-
-    /* The hosted page is a fixed-height frame that scrolls internally, so put
-       its top edge at the top of the screen rather than leaving the student to
-       find it. */
-    document.getElementById('payBox').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  function goToCheckout(url, lead){
+    showSuccess('Taking you to checkout…',
+      'One moment — sending you to our secure payment page.',
+      lead + 'If you are not redirected in a few seconds, ' +
+      '<a href="' + url + '" style="font-weight:700;color:#111">tap here to pay</a>.');
+    window.setTimeout(function(){ window.location.assign(url); }, 900);
   }
 
   /* a failed POST must never look like a completed signup */
@@ -911,8 +870,7 @@
         }
 
         if (payUrl){
-          goToCheckout(payUrl, '<b>Your spot is held.</b><br>', ref,
-            (payload.name || '').split(/\s+/)[0]);
+          goToCheckout(payUrl, '<b>Your spot is held.</b><br>');
           return;
         }
 
@@ -936,6 +894,89 @@
       });
   }
 
+  /* ------------------------------------------------------------------
+     Return from the payment page.
+
+     Paragon's "Submit URL" (Fields tab) is the redirect used after a
+     successful payment, and it lands here with ?paid=1. Without this block
+     the student is simply shown the sales page again, still being sold
+     something they have just bought.
+
+     Deliberately does not claim the pass is on their WellnessLiving profile:
+     on the Paragon path it is not, and the welcome email is the thing that
+     carries the signup link. While that email is silent (unverified sender
+     domain) this page is the only place the student learns what happens
+     next, so it repeats the essentials rather than relying on the email.
+
+     Anything Paragon appends alongside paid=1 is shown when present and
+     omitted when not, so this works whether or not extra parameters arrive.
+     ------------------------------------------------------------------ */
+  (function handlePaidReturn(){
+    var paid   = params.get('paid') === '1';
+    var failed = params.get('payment') === 'failed';
+    if (!paid && !failed) return;
+
+    /* The Direct page frames the Paragon payment page, so Paragon's redirect
+       lands here INSIDE that iframe — a 620px box sitting in the middle of the
+       sales page the student has just bought from. Promote to the top window so
+       the outcome takes over the page.
+
+       Same-origin, so this is permitted; X-Frame-Options is SAMEORIGIN rather
+       than DENY for exactly this reason. Cannot loop: once we are the top
+       window the condition is false. Wrapped because a cross-origin framer
+       would throw, and in that case rendering in place beats rendering
+       nothing. */
+    if (window.top !== window.self) {
+      try {
+        window.top.location.replace(window.location.href);
+        return;
+      } catch (e) { /* fall through and render inside the frame */ }
+    }
+
+    var ref = params.get('ref') || params.get('InvoiceNumber') || params.get('invoice') || '';
+    ref = ref.replace(/[^A-Za-z0-9-]/g, '');
+
+    /* Paragon's ErrorURL lands here. Without this the student who just had a
+       card declined is shown the sales page again with no acknowledgement.
+       Deliberately does not promise they were not charged — an error can occur
+       after authorisation, and we cannot see that from here. */
+    if (failed) {
+      showSuccess(
+        'That payment did not go through',
+        'Nothing is lost — your details are saved.',
+        (ref
+          ? '<p style="margin:0 0 12px"><a href="' + WL_CHECKOUT_URL + '?ref=' + encodeURIComponent(ref) +
+            '" style="font-weight:700">Try the payment again</a></p>'
+          : '<p style="margin:0 0 12px">Call or text the studio on ' +
+            '<a href="tel:+12017921616" style="font-weight:700">201-792-1616</a> ' +
+            'and we will take it from there.</p>') +
+        '<p style="margin:0">If a charge does show up on your statement, tell us and we will sort it out.</p>'
+      );
+      return;
+    }
+
+    var detail =
+      '<p style="margin:0 0 12px"><b>When to come</b><br>' +
+      'Pre-Beginner runs every <b>Monday 7pm</b> and <b>Saturday 12pm</b>. ' +
+      'No cycle to wait for — come to the next one.</p>' +
+      '<p style="margin:0 0 12px"><b>Where</b><br>' +
+      '83 Franklin St, Jersey City, NJ 07307<br>' +
+      'Wear socks or suede-soled shoes. No partner needed.</p>' +
+      '<p style="margin:0 0 12px"><b>One thing before your first class</b><br>' +
+      'Create your studio account so we can attach your pass: ' +
+      '<a href="https://www.wellnessliving.com/signup/salsa_fever_on2_dance_academy-bn22o6" ' +
+      'style="font-weight:700">wellnessliving.com</a>. ' +
+      'Use the same name and email you paid with.</p>' +
+      (ref ? '<p style="margin:0">Your reference is <b>' + ref + '</b>. ' +
+             'Quote it if you contact the studio about this purchase.</p>' : '');
+
+    showSuccess(
+      'Payment received',
+      'You are booked in. Here is everything you need for your first class.',
+      detail
+    );
+  })();
+
   /* ---- primary: lead in, then checkout (WellnessLiving for now; Paragon later) (FR-1.5) ---- */
   document.getElementById('signupForm').addEventListener('submit', function(e){
     e.preventDefault();
@@ -945,14 +986,6 @@
       LEAD_WEBHOOK
         ? 'The studio has your details and will be in touch to confirm your first class.'
         : 'In the live version you would now be handed to secure checkout for the $75 5-class pass.');
-  });
-
-  /* ---- secondary: records the lead without payment (FR-1.7) ---- */
-  askBtn.addEventListener('click', function(){
-    if (!validate()) return;
-    handle(askBtn, 'Sending…', buildPayload('question'),
-      'Question received',
-      'The studio will text you back shortly. Your details are saved either way — no payment required.');
   });
 
 })();
