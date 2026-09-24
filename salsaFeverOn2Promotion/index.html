@@ -916,6 +916,23 @@
     var failed = params.get('payment') === 'failed';
     if (!paid && !failed) return;
 
+    /* The Direct page frames the Paragon payment page, so Paragon's redirect
+       lands here INSIDE that iframe — a 620px box sitting in the middle of the
+       sales page the student has just bought from. Promote to the top window so
+       the outcome takes over the page.
+
+       Same-origin, so this is permitted; X-Frame-Options is SAMEORIGIN rather
+       than DENY for exactly this reason. Cannot loop: once we are the top
+       window the condition is false. Wrapped because a cross-origin framer
+       would throw, and in that case rendering in place beats rendering
+       nothing. */
+    if (window.top !== window.self) {
+      try {
+        window.top.location.replace(window.location.href);
+        return;
+      } catch (e) { /* fall through and render inside the frame */ }
+    }
+
     var ref = params.get('ref') || params.get('InvoiceNumber') || params.get('invoice') || '';
     ref = ref.replace(/[^A-Za-z0-9-]/g, '');
 
